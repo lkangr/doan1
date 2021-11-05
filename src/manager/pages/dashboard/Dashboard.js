@@ -1,5 +1,6 @@
 import Summary from "./Summary"
 import Graph from "./Graph"
+import React from 'react';
 
 const Dashboard = () => {
   return (

@@ -1,11 +1,12 @@
 import { Container, Row, Col } from "react-bootstrap"
+import React from 'react';
 
 const Summary = () => {
   return (
     <Container>
       <Row>
         <Col>
-          <Row className="bg-info bg-gradient m-5">
+          <Row className="bg-primary bg-gradient m-5">
             <Col xs={12}>
               <h3 className="p-2">Tổng đơn hàng</h3>
             </Col>
@@ -15,7 +16,7 @@ const Summary = () => {
           </Row>
         </Col>
         <Col>
-          <Row className="bg-info bg-gradient m-5">
+          <Row className="bg-primary bg-gradient m-5">
             <Col xs={12}>
               <h3 className="p-2">Tổng doanh thu</h3>
             </Col>

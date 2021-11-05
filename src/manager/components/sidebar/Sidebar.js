@@ -34,6 +34,9 @@ const Sidebar = () => {
             <NavLink to="/manage/analytic" activeStyle={{fontWeight: "bold", color: "red"}}>
               <CDBSidebarMenuItem icon="chart-line">Thống kê</CDBSidebarMenuItem>
             </NavLink>
+            <NavLink to="/manage/table" activeStyle={{fontWeight: "bold", color: "red"}}>
+              <CDBSidebarMenuItem icon="table">Quản lý bàn</CDBSidebarMenuItem>
+            </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>
 

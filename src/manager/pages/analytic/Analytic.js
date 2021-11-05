@@ -1,5 +1,6 @@
 import Select from "react-select"
 import Graph from "./Graph"
+import React from 'react';
 
 const Month = [
   { value: 'Select', label: 'Select' }

@@ -1,4 +1,5 @@
 import Restaurant from "./Restaurant.jpg"
+import React from 'react';
 
 const Login = (props) => {
   return (

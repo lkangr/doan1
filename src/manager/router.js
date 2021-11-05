@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Dashboard from "./pages/dashboard/Dashboard"
 import Order from "./pages/order/Order"
 import Analytic from "./pages/analytic/Analytic"
+import TableRoute from "./pages/table/router"
 
 const ManageRoute = () => {
   return (
@@ -16,6 +17,9 @@ const ManageRoute = () => {
       </Route>
       <Route path="/manage/analytic">
         <Analytic />
+      </Route>
+      <Route path="/manage/table">
+        <TableRoute />
       </Route>
       <Redirect from="/manage" to="/manage/dashboard" />
     </Switch>

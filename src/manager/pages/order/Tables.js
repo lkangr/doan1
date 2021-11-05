@@ -1,4 +1,5 @@
 import Data from "./Data"
+import React from 'react';
 
 const Tables = () => {
   return (
