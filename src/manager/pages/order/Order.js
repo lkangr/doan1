@@ -1,5 +1,6 @@
 import Tables from "./Tables"
 import { Table } from "react-bootstrap"
+import React from 'react';
 
 const Order = () => {
   return (

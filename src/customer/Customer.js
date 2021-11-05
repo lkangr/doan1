@@ -3,6 +3,7 @@ import {Cart} from './Cart';
 import {Reservation} from './Reservation';
 import {BrowserRouter, Route, Switch, NavLink, Redirect} from 'react-router-dom';
 import Footer from './Footer';
+import React from 'react';
 
 const Customer = () => {
   return (
