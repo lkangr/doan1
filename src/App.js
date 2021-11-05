@@ -8,7 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/manage">
+        <Route path="/managde">
           <Manage />
         </Route>
         <Route path="/">
