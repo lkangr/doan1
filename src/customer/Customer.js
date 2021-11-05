@@ -1,4 +1,5 @@
-import {Home} from './Home';
+import {Foods} from './Foods';
+import {Drinks} from './Drinks';
 import {Cart} from './Cart';
 import {Reservation} from './Reservation';
 import {BrowserRouter, Route, Switch, NavLink, Redirect} from 'react-router-dom';
@@ -15,8 +16,13 @@ const Customer = () => {
         <nav className = "navbar navbar-expand-sm bg-light navbar-dark">
           <ul className = "navbar-nav">
             <li className = "nav-item- m-1">
-              <NavLink className = "btn btn-light btn-outline-primary" to = "/home">
-                Home
+              <NavLink className = "btn btn-light btn-outline-primary" to = "/foods">
+                Foods
+              </NavLink>
+            </li>
+            <li className = "nav-item- m-1">
+              <NavLink className = "btn btn-light btn-outline-primary" to = "/drinks">
+                Drinks
               </NavLink>
             </li>
             <li className = "nav-item- m-1">
@@ -38,7 +44,8 @@ const Customer = () => {
         </nav>
 
         <Switch>
-          <Route path = "/home" component = {Home}/>
+          <Route path = "/foods" component = {Foods}/>
+          <Route path = "/drinks" component = {Drinks}/>
           <Route path = "/cart" component = {Cart}/>
           <Route path = "/reservation" component = {Reservation}/>
           <Redirect from="/" to="/home" />
