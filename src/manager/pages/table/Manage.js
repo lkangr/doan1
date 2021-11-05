@@ -2,7 +2,7 @@ import Tables from "./Tables"
 import { Table } from "react-bootstrap"
 import React from 'react';
 
-const Order = () => {
+const ManageTable = () => {
   return (
     <>
       <h1 className="fw-bold p-3">Danh sách đặt bàn</h1>
@@ -32,4 +32,4 @@ const Order = () => {
   )
 }
 
-export default Order
+export default ManageTable
