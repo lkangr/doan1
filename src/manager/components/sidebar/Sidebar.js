@@ -28,17 +28,17 @@ const Sidebar = () => {
             <NavLink to="/manage/dashboard" activeStyle={{ fontWeight: "bold", color: "red" }}>
               <CDBSidebarMenuItem icon="columns">Dashboard</CDBSidebarMenuItem>
             </NavLink>
+            <NavLink to="/manage/menu" activeStyle={{fontWeight: "bold", color: "red"}}>
+              <CDBSidebarMenuItem icon="book">Quản lý thực đơn</CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink to="/manage/table" activeStyle={{fontWeight: "bold", color: "red"}}>
+              <CDBSidebarMenuItem icon="table">Quản lý đặt bàn</CDBSidebarMenuItem>
+            </NavLink>
             <NavLink to="/manage/order" activeStyle={{fontWeight: "bold", color: "red"}}>
               <CDBSidebarMenuItem icon="list">Đơn hàng</CDBSidebarMenuItem>
             </NavLink>
             <NavLink to="/manage/analytic" activeStyle={{fontWeight: "bold", color: "red"}}>
               <CDBSidebarMenuItem icon="chart-line">Thống kê</CDBSidebarMenuItem>
-            </NavLink>
-            <NavLink to="/manage/table" activeStyle={{fontWeight: "bold", color: "red"}}>
-              <CDBSidebarMenuItem icon="table">Quản lý bàn</CDBSidebarMenuItem>
-            </NavLink>
-            <NavLink to="/manage/menu" activeStyle={{fontWeight: "bold", color: "red"}}>
-              <CDBSidebarMenuItem icon="book">Quản lý thực đơn</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>
