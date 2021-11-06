@@ -16,33 +16,33 @@ const Customer = () => {
       <div className="App container">
           <div className="text-end">
             <a className="btn btn-light btn-outline-primary" href="/manage/login">
-              Log in
+              Đăng nhập
             </a>
           </div>
         <h3 className = "d-flex justify-content-center m-3" href = "#">
-          Restaurant Name
+          Nhà hàng của bạn
             </h3>
             <nav className="navbar navbar-expand-sm bg-light navbar-dark">
               
           <ul className = "navbar-nav">
             <li className = "nav-item- m-1">
               <NavLink className = "btn btn-light btn-outline-primary" to = "/foods">
-                Foods
+                Đồ ăn
               </NavLink>
             </li>
             <li className = "nav-item- m-1">
               <NavLink className = "btn btn-light btn-outline-primary" to = "/drinks">
-                Drinks
+                Đồ uống
               </NavLink>
             </li>
             <li className = "nav-item- m-1">
               <NavLink className = "btn btn-light btn-outline-primary" to = "/cart">
-                Cart
+                Giỏ hàng
               </NavLink>
             </li>
             <li className = "nav-item- m-1">
               <NavLink className = "btn btn-light btn-outline-primary" to = "/reservation">
-                Reservation
+                Đặt bàn
               </NavLink>
             </li>
             

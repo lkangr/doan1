@@ -9,7 +9,7 @@ const Item = ({name, desc, img, price}) => {
                 <p className="description">{desc}</p>
                 <div className="d-flex justify-content-around align-items-center">
                     <button className="btn btn-success" type="button">
-                        Add to basket
+                        Thêm vào giỏ
                     </button>
                     <span className="badge rounded-pill bg-danger price">$999</span>
                 </div>

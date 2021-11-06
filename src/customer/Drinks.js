@@ -5,7 +5,7 @@ export class Drinks extends Component {
     render() {
         return(
             <div>
-                <Menu name="Drinks" desc="Many drinks for you to choose"/>
+                <Menu name="Đồ uống" desc="Many drinks for you to choose"/>
             </div>
         )
     }

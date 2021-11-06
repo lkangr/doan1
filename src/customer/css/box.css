@@ -6,14 +6,15 @@
 
 .features-boxed p {
     color: #000;
+    font-size: 1.5em;
 }
 
 .features-boxed h2 {
     font-weight: normal;
-    margin-bottom: 40px;
-    padding-top: 40px;
+    margin-bottom: 30px;
+    padding-top: 30px;
     color: inherit;
-    font-family: 'Lilita One', cursive;
+    font-family: "Gill Sans", sans-serif;
     font-size: 3em;
 }
 
