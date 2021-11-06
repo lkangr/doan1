@@ -1,6 +1,6 @@
 import {Foods} from './Foods';
 import {Drinks} from './Drinks';
-import {Cart} from './Cart';
+import Cart from './Cart';
 import ReserveRoute from './component/router';
 import {BrowserRouter, Route, Switch, NavLink, Redirect} from 'react-router-dom';
 import Footer from './Footer';
@@ -36,7 +36,7 @@ const Customer = () => {
               </NavLink>
             </li>
             <li className="nav-item- m-1">
-              <a className="btn btn-light btn-outline-primary" href="/manage">
+              <a className="btn btn-light btn-outline-primary" href="/manage/login">
                 Quản lí
               </a>
             </li>

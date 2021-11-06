@@ -51,13 +51,13 @@ const ReserveForm = () => {
               </div>
               <div className="col-9">
                 <div className="row">
-                  <div className="col-3">
+                  <div className="col-auto">
                     <p className="text-muted text-end">Người lớn</p>
                   </div>
                   <div className="col-3">
                     <input type="number" className="form-control" /> 
                   </div>
-                  <div className="col-3 ">
+                  <div className="col-2" style={{paddingRight: '0'}}>
                     <p className="text-muted text-end">Trẻ em</p>
                   </div>
                   <div className="col-3">
@@ -92,13 +92,13 @@ const ReserveForm = () => {
             </div>
           </div>
         </div>
-        <row className="m-2 float-end">
+        <div className="m-2 text-end">
           <button type="button" className="btn btn-primary m-1">Lưu và in</button>
           <button type="button" className="btn btn-primary m-1">Lưu</button>
           <a href="/reservation">
             <button type="button" className="btn btn-secondary m-1">Xóa</button>
           </a>
-        </row>
+        </div>
       </div>
     </form>
     </>

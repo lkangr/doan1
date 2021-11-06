@@ -20,7 +20,7 @@ const CheckAuth = () => {
           {isAuth ? <Redirect to="/manage" /> : <Login signin={signin} />}
         </Route>
         <Route path="/manage">
-          {isAuth ? <Manage /> : <Redirect to="/manage/login" />}
+          <Manage />
         </Route>
       </Switch>
     </Router>

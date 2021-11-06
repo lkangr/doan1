@@ -49,7 +49,7 @@ const TableEdit = () => {
               <div className="col-3">
                 <p className="fw-bold">Số khách</p>
               </div>
-              <div className="col-9">
+              <div className="col-9" style={{paddingRight: '0'}}>
                 <div className="row">
                   <div className="col-3">
                     <p className="text-muted text-end">Người lớn</p>
@@ -92,7 +92,7 @@ const TableEdit = () => {
             </div>
           </div>
         </div>
-        <row className="m-2 float-end">
+        <div className="m-2 text-end">
           <button type="button" className="btn btn-danger m-1">Hủy đặt</button>
           <button type="button" className="btn btn-primary m-1">Nhận gọi món</button>
           <button type="button" className="btn btn-primary m-1">Nhận bàn</button>
@@ -101,7 +101,7 @@ const TableEdit = () => {
           <a href="/manage/table">
             <button type="button" className="btn btn-secondary m-1">Bỏ qua</button>
           </a>
-        </row>
+        </div>
       </div>
     </form>
     </>
