@@ -93,9 +93,14 @@ const TableEdit = () => {
           </div>
         </div>
         <row className="m-2 float-end">
+          <button type="button" className="btn btn-danger m-1">Hủy đặt</button>
+          <button type="button" className="btn btn-primary m-1">Nhận gọi món</button>
+          <button type="button" className="btn btn-primary m-1">Nhận bàn</button>
           <button type="button" className="btn btn-primary m-1">Lưu và in</button>
           <button type="button" className="btn btn-primary m-1">Lưu</button>
-          <button type="button" className="btn btn-secondary m-1">Xóa</button>
+          <a href="/manage/table">
+            <button type="button" className="btn btn-secondary m-1">Bỏ qua</button>
+          </a>
         </row>
       </div>
     </form>
