@@ -30,7 +30,7 @@ const Login = (props) => {
                       value=""
                       id="form1Example3"
                     />
-                    <label className="form-check-label" for="form1Example3"> Nhớ mật khẩu </label>
+                    <label className="form-check-label m-0" for="form1Example3"> Nhớ mật khẩu </label>
                   </div>       
                   <button className="btn btn-primary btn-lg btn-block" type="submit" onClick={props.signin}>Đăng nhập</button>
                 </div>
