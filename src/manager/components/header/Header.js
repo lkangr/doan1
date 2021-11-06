@@ -14,7 +14,7 @@ const Header = () => {
             </div>}
             id="navbarScrollingDropdown"
           >
-              <NavDropdown.Item href="/home">Log out</NavDropdown.Item>
+              <NavDropdown.Item href="/home">Đăng xuất</NavDropdown.Item>
             </NavDropdown>
         </Navbar.Collapse>
       </Container>
