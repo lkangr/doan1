@@ -1,16 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 import "./css/Payment.css";
-
-export class Payment extends Component {
-    render() {
-        return(
-            <div>
-                <h3>This is Payment Page</h3>
-            </div>
-        )
-    }
-}
 
 export class MasterForm extends React.Component {
     constructor(props) {
@@ -101,11 +91,11 @@ export class MasterForm extends React.Component {
     let currentStep = this.state.currentStep;
     if(currentStep < 2){
       return (
-        <div className = "mark doing">1</div>      
+        <div className = "stepnumber doing">1</div>      
       )
     }
     return (
-      <div className = "mark doing">✓</div>
+      <div className = "stepnumber doing">✓</div>
     )
   }
 
@@ -125,15 +115,15 @@ export class MasterForm extends React.Component {
     let currentStep = this.state.currentStep;
     if(currentStep === 2){
       return (
-        <div className = "mark doing">2</div>      
+        <div className = "stepnumber doing">2</div>      
       )
     } else if (currentStep === 3) {
       return (
-        <div className = "mark completed">✓</div>
+        <div className = "stepnumber completed">✓</div>
       )
     } else if (currentStep === 1) {
       return (
-        <div className = "mark">2</div>
+        <div className = "stepnumber">2</div>
       )
     }
   }
@@ -154,15 +144,15 @@ export class MasterForm extends React.Component {
     let currentStep = this.state.currentStep;
     if(currentStep === 3){
       return (
-        <div className = "mark doing">3</div>      
+        <div className = "stepnumber doing">3</div>      
       )
     } else if (currentStep < 3) {
       return (
-        <div className = "mark">3</div>
+        <div className = "stepnumber">3</div>
       )
     } else {
       return (
-        <div className = "mark completed">✓</div>
+        <div className = "stepnumber completed">✓</div>
       )
     } 
   }
@@ -333,7 +323,7 @@ export class MasterForm extends React.Component {
         <p style={{textAlign: 'center'}}>
           Thanks for your order! You will recieve a recipient of your order on your email
         </p>
-        <button className="btn btn-success btn-block float-end">Confirm</button>
+        <button className="btn btn-success btn-primary float-end">Confirm</button>
       </React.Fragment>
     );
   }
