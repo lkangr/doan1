@@ -323,7 +323,7 @@ export class MasterForm extends React.Component {
         <p style={{textAlign: 'center'}}>
           Thanks for your order! You will recieve a recipient of your order on your email
         </p>
-        <button className="btn btn-success btn-primary float-end">Confirm</button>
+        <button className="btn btn-success float-end">Confirm</button>
       </React.Fragment>
     );
   }
