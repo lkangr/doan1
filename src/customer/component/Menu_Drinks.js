@@ -9,26 +9,29 @@ const Menu = ({name, desc, menu, addItem}) => {
                     <p className="text-center">{desc}</p>
                 </div>
                 <div className="row justify-content-center features">
-                    <Item 
-                        name="Fucking chicken 1"
-                        desc="Eat and then you die"
+                <Item 
+                        name="Chicken 1"
+                        desc="Đây là một dòng mô tả về đồ uống"
                     />
                     <Item 
-                        name="Fucking chicken 2"
-                        desc="Eat and then you cry"
+                        name="Chicken 2"
+                        desc="Đây là một dòng mô tả về đồ uống"
                     />
                     <Item 
-                        name="Fucking chicken 3"
-                        desc="I'm tired :v"
+                        name="Chicken 3"
+                        desc="Đây là một dòng mô tả về đồ uống"
                     />
                     <Item 
-                        name="Fucking chicken 4"
+                        name="Chicken 4"
+                        desc="Đây là một dòng mô tả về đồ uống"
                     />
                     <Item 
-                        name="Fucking chicken 5"
+                        name="Chicken 5"
+                        desc="Đây là một dòng mô tả về đồ uống"
                     />
                     <Item 
-                        name="Fucking chicken 6"
+                        name="Chicken 6"
+                        desc="Đây là một dòng mô tả về đồ uống"
                     />
                 </div>
             </div>
