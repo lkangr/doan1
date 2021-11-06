@@ -5,6 +5,7 @@ import Dashboard from "./pages/dashboard/Dashboard"
 import Order from "./pages/order/Order"
 import Analytic from "./pages/analytic/Analytic"
 import TableRoute from "./pages/table/router"
+import Menu from "./pages/menu/Menu";
 
 const ManageRoute = () => {
   return (
@@ -20,6 +21,9 @@ const ManageRoute = () => {
       </Route>
       <Route path="/manage/table">
         <TableRoute />
+      </Route>
+      <Route path="/manage/menu">
+        <Menu />
       </Route>
       <Redirect from="/manage" to="/manage/dashboard" />
     </Switch>
