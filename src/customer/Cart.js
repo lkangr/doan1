@@ -173,11 +173,11 @@ const Cart = () => {
                                     <tfoot>
                                         <tr>
                                             <th colSpan="2">
-                                                <NavLink to="/payment">
+                                                <a href="/payment">
                                                     <button className="btn btn-success mt-0 btn-sm" style={{height:"50px"}}>
                                                         <h6>THANH TOÁN</h6>
                                                     </button>
-                                                </NavLink>
+                                                </a>
                                             </th>
                                             <th>&nbsp;</th>
                                             <th>Số lượng<span className="ml-2 mr-2">:</span><span className="text-danger">{cartTotalQty}</span></th>

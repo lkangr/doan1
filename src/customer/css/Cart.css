@@ -17,11 +17,6 @@ a, a:hover, a:focus {
 .card-body {
     padding: 30px;
 }
-.btn-primary {
-    border-color: #5a8dee !important;
-    background-color: #5a8dee !important;
-    color: #fff;
-}
 .btn-danger {
     border-color: #FF2829!important;
     background-color: #FF5B5C!important;
@@ -129,9 +124,7 @@ a, a:hover, a:focus {
     vertical-align: middle;
 }
 
-.row {
-    min-width: 1000px;
-}
+
 
 tfoot {
     border-top: 2px solid #bdbdbd !important;
