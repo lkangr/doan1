@@ -28,15 +28,15 @@ export class MasterForm extends React.Component {
     handleSubmit = event => {
       event.preventDefault()
       const { fullname, email, formality, address, cardNo, nameOnCard, expiryDate, CVC } = this.state
-      alert(`Your Order detail: \n 
-             Full name: ${fullname} \n
+      alert(`Chi tiết đơn hàng: \n 
+             Họ và tên: ${fullname} \n
              Email: ${email} \n 
-             Formality: ${formality} \n
-             Address: ${address} \n
-             Card Number: ${cardNo} \n
-             Name On Card: ${nameOnCard} \n
-             Expiry Date: ${expiryDate} \n
-             CVC Code: ${CVC}`)
+             Hình thức đặt hàng: ${formality} \n
+             Địa chỉ: ${address} \n
+             Số thẻ: ${cardNo} \n
+             Tên thẻ: ${nameOnCard} \n
+             Ngày hết hạn: ${expiryDate} \n
+             Mã CVC: ${CVC}`)
       this.props.history.push('/home');
     }
     
@@ -210,13 +210,13 @@ export class MasterForm extends React.Component {
     } 
     return(
       <div className="form-group">
-        <label htmlFor="fullname">Fullname</label>
+        <label htmlFor="fullname">Họ và tên</label>
         <input
           className="form-control"
           id="fullname"
           name="fullname"
           type="text"
-          placeholder="Enter your full name"
+          placeholder="Trần Văn A"
           value={props.fullname}
           onChange={props.handleChange}
           />
@@ -226,19 +226,19 @@ export class MasterForm extends React.Component {
           id="email"
           name="email"
           type="text"
-          placeholder="Enter your email"
+          placeholder="Atran@gmail.com"
           value={props.email}
           onChange={props.handleChange}
           />
         <div>
-          <label htmlFor="formality">Formality</label>
+          <label htmlFor="formality">Hình thức đặt món</label>
           <div className="ratio-control">
           <input 
             id="formality"
             type="radio" 
             value="Eat now" 
             name="formality" 
-            onChange={props.handleChange}/> Eat now
+            onChange={props.handleChange}/> Ăn tại chỗ
           </div>
           <div className="ratio-control">
           <input 
@@ -246,16 +246,16 @@ export class MasterForm extends React.Component {
             type="radio" 
             value="Eat now" 
             name="formality" 
-            onChange={props.handleChange}/> Take away
+            onChange={props.handleChange}/> Mang đi
           </div>
         </div>
-        <label htmlFor="address">Address</label>
+        <label htmlFor="address">Địa chỉ</label>
         <input
           className="form-control"
           id="address"
           name="address"
           type="text"
-          placeholder="Enter your address if you want to take away"
+          placeholder="48 đường số 19, phường Hiệp Bình Chánh, Quận Thủ Đức, TP.HCM"
           value={props.address}
           onChange={props.handleChange}
           />        
@@ -269,43 +269,43 @@ export class MasterForm extends React.Component {
     } 
     return(
       <div className="form-group">
-        <label htmlFor="cardNo">Card Number</label>
+        <label htmlFor="cardNo">Số thẻ</label>
         <input
           className="form-control"
           id="cardNo"
           name="cardNo"
           type="text"
-          placeholder="Enter your card number"
+          placeholder="4444-4444-4444-4444"
           value={props.cardNo}
           onChange={props.handleChange}
           />
-        <label htmlFor="nameOnCard">Name On Card</label>
+        <label htmlFor="nameOnCard">Tên thẻ</label>
         <input
           className="form-control"
           id="nameOnCard"
           name="nameOnCard"
           type="text"
-          placeholder="Enter name on card"
+          placeholder="TRAN VAN A"
           value={props.nameOnCard}
           onChange={props.handleChange}
           />
-        <label htmlFor="expiryDate">Expiry Date</label>
+        <label htmlFor="expiryDate">Ngày hết hạn</label>
         <input
           className="form-control"
           id="expiryDate"
           name="expiryDate"
           type="text"
-          placeholder="Enter expiry date"
+          placeholder="19/05"
           value={props.expiryDate}
           onChange={props.handleChange}
           />
-        <label htmlFor="CVC">CVC Code</label>
+        <label htmlFor="CVC">Mã CVC</label>
         <input
           className="form-control"
           id="CVC"
           name="CVC"
           type="text"
-          placeholder="Enter your CVC code"
+          placeholder="Nhập CVC"
           value={props.CVC}
           onChange={props.handleChange}
           />
@@ -319,11 +319,11 @@ export class MasterForm extends React.Component {
     } 
     return(
       <React.Fragment>
-        <h3 style={{textAlign: 'center'}}>Your Order need to be confirmed!</h3>
+        <h3 style={{textAlign: 'center'}}>Xác thực thanh toán!</h3>
         <p style={{textAlign: 'center'}}>
-          Thanks for your order! You will recieve a recipient of your order on your email
+          Cảm ơn đơn hàng của bạn! Chúc bạn ngon miệng! Hóa đơn sẽ được gửi vào email của bạn!
         </p>
-        <button className="btn btn-success float-end">Confirm</button>
+        <button className="btn btn-success float-end">Xác nhận</button>
       </React.Fragment>
     );
   }

@@ -7,35 +7,35 @@ const Cart = () => {
         {
             "id": 1,
             "image": "http://dummyimage.com/440x620.png/dddddd/000000",
-            "name": "Coke - Diet, 355 Ml",
+            "name": "Bún thịt nướng",
             "price": 120,
             "qty": 1,
         },
         {
             "id": 2,
             "image": "http://dummyimage.com/440x620.png/dddddd/000000",
-            "name": "Pork - Hock And Feet Attached",
+            "name": "Bún bò",
             "price": 150,
             "qty": 1,
         },
         {
             "id": 3,
             "image": "http://dummyimage.com/440x620.png/dddddd/000000",
-            "name": "Veal - Jambu",
+            "name": "Cơm gà",
             "price": 135,
             "qty": 1,
         },
         {
             "id": 4,
             "image": "http://dummyimage.com/440x620.png/dddddd/000000",
-            "name": "Almonds Ground Blanched",
+            "name": "Cháo vịt",
             "price": 110,
             "qty": 1,
         },
         {
             "id": 5,
             "image": "http://dummyimage.com/440x620.png/dddddd/000000",
-            "name": "Passion Fruit",
+            "name": "Xôi ngũ sắc",
             "price": 80,
             "qty": 1,
         }
@@ -113,9 +113,9 @@ const Cart = () => {
                 <div className="card">
                     <div className="card-header bg-light p-3">
                         <div className="card-header-flex">
-                            <h5 className="text-black m-0">Cart</h5>
+                            <h5 className="text-black m-0">Giỏ hàng</h5>
                             {
-                                products.length > 0 ? <button className="btn btn-danger mt-0 btn-sm" onClick={() => emptycart()}><i className="fa fa-trash-alt mr-2"></i><span>Empty Cart</span></button> : ''}
+                                products.length > 0 ? <button className="btn btn-danger mt-0 btn-sm" onClick={() => emptycart()}><i className="fa fa-trash-alt mr-2"></i><span>Xóa tất cả</span></button> : ''}
                         </div>
                     </div>
                     <div className="card-body p-0">
@@ -126,7 +126,7 @@ const Cart = () => {
                                         <td colSpan="6">
                                             <div className="cart-empty">
                                                 <i className="fa fa-shopping-cart"></i>
-                                                <p>Your Cart Is empty</p>
+                                                <p>Giỏ hàng trống</p>
                                             </div>
                                         </td>
                                     </tr>
@@ -137,7 +137,7 @@ const Cart = () => {
                                         <tr>
                                             <th>Hủy</th>
                                             <th>Món ăn</th>
-                                            <th>Tên</th>
+                                            <th>Tên món ăn</th>
                                             <th>Giá cả</th>
                                             <th>Số lượng</th>
                                             <th className="text-right"><span id="amount" className="amount">Total</span></th>
@@ -174,8 +174,8 @@ const Cart = () => {
                                         <tr>
                                             <th colSpan="2">
                                                 <NavLink to="/payment">
-                                                    <button className="btn btn-success mt-0 btn-sm" style={{height:"50px", width:"100px"}}>
-                                                        <h6>PAYMENT</h6>
+                                                    <button className="btn btn-success mt-0 btn-sm" style={{height:"50px"}}>
+                                                        <h6>THANH TOÁN</h6>
                                                     </button>
                                                 </NavLink>
                                             </th>
