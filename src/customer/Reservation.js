@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
+import Menu from './component/Reserve_Table';
 
-export class Reservation extends Component {
-    
+export class Reserve extends Component {
     render() {
         return(
             <div>
-                <h3>This is Reservation Page</h3>
+                <Menu />
             </div>
         )
     }

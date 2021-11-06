@@ -1,7 +1,7 @@
 const TableEdit = () => {
   return (
     <>
-    <h1 className="m-5">Thêm mới đặt bàn</h1>
+    <h1 className="m-5">Chỉnh đơn đặt bàn</h1>
     <form>
       <div className="container">
         <div className="row">
