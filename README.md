@@ -9,5 +9,5 @@ Chạy server local.
 
 ## Git Commands
 
-### git --no-pager log > log.txt
+### `git --no-pager log > log.txt`
 Export file log.txt
