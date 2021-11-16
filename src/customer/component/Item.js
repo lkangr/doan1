@@ -30,12 +30,16 @@ function addItem(name, price, img) {
         "price": price,
         "qty": 1
     }
+    var exist =  false;
 
-    if (ProductList.includes(temp)) {
-        var index = ProductList.indexOf(temp);
-        ProductList[index]["qty"] += 1;  
-    }
-    else {
+    ProductList.forEach(function(item) {
+        if (item["name"] == name) {
+            item["qty"] += 1;
+        }
+        exist = true;
+    });
+    
+    if (!exist) {
         ProductList.push(temp);
         id = id + 1;
     }
