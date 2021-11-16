@@ -51,18 +51,11 @@ const ReserveForm = () => {
               </div>
               <div className="col-9">
                 <div className="row">
-                  <div className="col-auto">
-                    <p className="text-muted text-end">Người lớn</p>
-                  </div>
+                  
                   <div className="col-3">
                     <input type="number" className="form-control" /> 
                   </div>
-                  <div className="col-2" style={{paddingRight: '0'}}>
-                    <p className="text-muted text-end">Trẻ em</p>
-                  </div>
-                  <div className="col-3">
-                    <input type="number" className="form-control" /> 
-                  </div>
+                  
                 </div>
               </div>
             </div>
