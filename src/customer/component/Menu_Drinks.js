@@ -12,6 +12,7 @@ const Menu = ({name, desc, menu, addItem}) => {
                 <Item 
                         name="Chicken 1"
                         desc="Đây là một dòng mô tả về đồ uống"
+                        price="1"
                     />
                     <Item 
                         name="Chicken 2"

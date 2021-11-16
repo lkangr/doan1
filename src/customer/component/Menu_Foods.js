@@ -1,6 +1,6 @@
 import Item from "./Item";
 import "../css/box.css"
-const Menu = ({name, desc, menu, addItem}) => {
+const Menu = ({name, desc, price, addItem}) => {
     return (
         <section className="features-boxed">
             <div className="container">
@@ -12,26 +12,32 @@ const Menu = ({name, desc, menu, addItem}) => {
                     <Item 
                         name="Chicken 1"
                         desc="Đây là một dòng mô tả về đồ ăn"
+                        price="999"
                     />
                     <Item 
                         name="Chicken 2"
                         desc="Đây là một dòng mô tả về đồ ăn"
+                        price="999"
                     />
                     <Item 
                         name="Chicken 3"
                         desc="Đây là một dòng mô tả về đồ ăn"
+                        price="999"
                     />
                     <Item 
                         name="Chicken 4"
                         desc="Đây là một dòng mô tả về đồ ăn"
+                        price="999"
                     />
                     <Item 
                         name="Chicken 5"
                         desc="Đây là một dòng mô tả về đồ ăn"
+                        price="999"
                     />
                     <Item 
                         name="Chicken 6"
                         desc="Đây là một dòng mô tả về đồ ăn"
+                        price="999"
                     />
                 </div>
             </div>
