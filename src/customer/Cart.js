@@ -2,44 +2,10 @@ import React, {useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import "./css/Cart.css";
 
+const ProductList = [];
+
 const Cart = () => {
-    const productData = [
-        {
-            "id": 1,
-            "image": "http://dummyimage.com/440x620.png/dddddd/000000",
-            "name": "Bún thịt nướng",
-            "price": 120,
-            "qty": 1,
-        },
-        {
-            "id": 2,
-            "image": "http://dummyimage.com/440x620.png/dddddd/000000",
-            "name": "Bún bò",
-            "price": 150,
-            "qty": 1,
-        },
-        {
-            "id": 3,
-            "image": "http://dummyimage.com/440x620.png/dddddd/000000",
-            "name": "Cơm gà",
-            "price": 135,
-            "qty": 1,
-        },
-        {
-            "id": 4,
-            "image": "http://dummyimage.com/440x620.png/dddddd/000000",
-            "name": "Cháo vịt",
-            "price": 110,
-            "qty": 1,
-        },
-        {
-            "id": 5,
-            "image": "http://dummyimage.com/440x620.png/dddddd/000000",
-            "name": "Xôi ngũ sắc",
-            "price": 80,
-            "qty": 1,
-        }
-    ]
+    const productData = ProductList;
 
     const [products, SetProducts] = useState(productData);
 
@@ -194,3 +160,4 @@ const Cart = () => {
     );
 }
 export default Cart;
+export {ProductList};
