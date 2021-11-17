@@ -1,19 +1,13 @@
 import React, { Component, useState } from 'react';
 import "./Menu.css";
 
-function Menu() {
+const Menu = () => {
     return ( <
-        div >
+        >
         <
-        div className = "container-fluid" > <
-        div className = "row" >
+        h1 className = "fw-bold p-3" > Thêm món < /h1>
+
         <
-        div className = "col-sm-3" >
-        <
-        h3 > Thêm món < /h3> < /
-        div >
-        <
-        /div> < /
         div >
         <
         div className = "container-fluid" >
@@ -231,6 +225,8 @@ function Menu() {
         /div>  < /
         div > < /
         div >
+        <
+        / >
     )
 }
 
