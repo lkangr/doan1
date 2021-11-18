@@ -26,9 +26,14 @@ def ReservationApi(request, id=0):
 
 def OrderApi(request, id=0):
     if request.method=='GET':
-        order = Order.objects.all()
-        order_serializer = OrderSerializer(order, many=True)
-        return JsonResponse(order_serializer.data, safe=False)
+        if id == 0:
+            order = Order.objects.all().order_by('-id')
+            order_serializer = OrderSerializer(order, many=True)
+            return JsonResponse(order_serializer.data, safe=False)
+        else:
+            order = Order.objects.get(id=id)
+            order_serializer = OrderSerializer(order, many=False)
+            return JsonResponse(order_serializer.data, safe=False)
 
 def Food_OrderApi(request, id=0):
     pass

@@ -3,8 +3,22 @@ import Data from "./Data"
 import React from 'react';
 import axios from 'axios';
 
+import OrderInfo from "./OrderInfo";
+
 const Tables = () => {
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
+  const [show, setShow] = useState(false);
+  const [info, setInfo] = useState([]);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const showInfo = (row) => {
+    axios
+      .get(`/api/order/${row}`)
+      .then((res) => setInfo(res.data));
+    handleShow();
+  }
 
   useEffect(() => {
     axios
@@ -19,9 +33,12 @@ const Tables = () => {
           <td>{row.id}</td>
           <td>{row.total}</td>
           <td>{row.time}</td>
-          <td>{row.status}</td>
-          <td>Xem đơn hàng</td>
+          {row.status === 'D' ? <td>Đang giao</td> : row.status === 'F' ? <td>Hoàn thành</td> : <td>Hủy đơn</td>}
+          <td>
+            <button type="button" className="btn btn-link" onClick={() => showInfo(row.id)}>Xem đơn hàng</button>
+          </td>
         </tr>)}
+      <OrderInfo data={info} show={show} handleClose={handleClose} />
     </>
   )
 }
