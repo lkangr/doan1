@@ -32,7 +32,7 @@ const Tables = () => {
         <tr>
           <td>{row.id}</td>
           <td>{row.total}</td>
-          <td>{row.time}</td>
+          <td>{new Date(row.time).toLocaleString()}</td>
           {row.status === 'D' ? <td>Đang giao</td> : row.status === 'F' ? <td>Hoàn thành</td> : <td>Hủy đơn</td>}
           <td>
             <button type="button" className="btn btn-link" onClick={() => showInfo(row.id)}>Xem đơn hàng</button>

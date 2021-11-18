@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
 
 const OrderInfo = ({ data, show, handleClose }) => {
@@ -63,7 +62,7 @@ const OrderInfo = ({ data, show, handleClose }) => {
               <p>Thời gian: </p>
             </div>
             <div className="col-8">
-              <p>{data.time}</p>
+              <p>{new Date(data.time).toLocaleString()}</p>
             </div>
             <div className="col-4 fw-bold">
               <p>Trạng thái: </p>
