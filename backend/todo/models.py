@@ -11,7 +11,7 @@ class Category(models.Model):
 class Foods(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
-    info = models.CharField(max_length=500)
+    info = models.TextField(blank=True, null=True)
     qty_day = models.IntegerField()
     image = models.ImageField(upload_to='uploads/FImages')
     category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -29,7 +29,7 @@ class Table(models.Model):
 class Staff(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=30)
-    email = models.CharField(max_length=30)
+    email = models.EmailField()
     password = models.CharField(max_length=20)
     avatar = models.ImageField(upload_to='uploads/SImages')
     STAFF_TYPE = (
@@ -41,7 +41,7 @@ class Staff(models.Model):
 
 class Reservation(models.Model):
     table_id = models.ForeignKey(Table, on_delete=CASCADE)
-    rtime = models.DateTimeField()
+    rtime = models.DateTimeField(auto_now_add=True)
     no_customer = models.IntegerField()
     interval = models.IntegerField()    #don vi: gio
     staff_name = models.ForeignKey(Staff, on_delete=CASCADE, null=True)
@@ -51,7 +51,7 @@ class Order(models.Model):
     id = models.AutoField(primary_key=True)
     c_name = models.CharField(max_length=30)
     c_tele = models.CharField(max_length=10)
-    c_email = models.CharField(max_length=30)
+    c_email = models.EmailField()
     FORMALITY = (
         ('E', 'Eat now'),
         ('T', 'Take away'),
@@ -59,12 +59,12 @@ class Order(models.Model):
     formality = models.CharField(max_length=1, choices=FORMALITY)
     c_address = models.CharField(max_length=200, null=True)
     total = models.BigIntegerField()
-    time = models.DateField(auto_now_add=True)
     STATUS = (
         ('D', 'Doing'),
         ('F', 'Finish'),
         ('C', 'Canceled'),
     )
+    time = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=1, choices=STATUS)
 
 class Food_Order(models.Model):
