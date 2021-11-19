@@ -1,7 +1,7 @@
 import { ProductList } from "../Cart";
-import chicken from "../img/chicken.jpg"
+// import MEDIA_URL from "C:/Users/PC/Downloads/HK211/CNPM/ProjectCNPM/UPDATING VERSION/doan1/backend/backend/settings"
 
-const Item = ({name, desc, img=chicken, price=999}) => {
+const Item = ({name, desc, img, price}) => {
     return (
         <div className="col-sm-6 col-md-5 col-lg-4 item">
             <div className="box">
