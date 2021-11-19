@@ -9,7 +9,7 @@ const Item = ({name, desc, img, price}) => {
                 <h3 className="name">{name}</h3>
                 <p className="description">{desc}</p>
                 <div className="d-flex justify-content-around align-items-center">
-                    <button className="btn btn-success" type="button" onClick={() => addItem(name, price, img)}>
+                    <button className="btn btn-success" type="button" onClick={() => { addItem(name, price, img); alert("Đã thêm " + name + " vô giỏ hàng của bạn!") }}>
                         Thêm vào giỏ
                     </button>
                     <span className="badge rounded-pill bg-danger price">{String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'}</span>
@@ -33,10 +33,10 @@ function addItem(name, price, img) {
     var exist =  false;
 
     ProductList.forEach(function(item) {
-        if (item["name"] == name) {
+        if (item["name"] === name) {
             item["qty"] += 1;
+            exist = true;
         }
-        exist = true;
     });
     
     if (!exist) {

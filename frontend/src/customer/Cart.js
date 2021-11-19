@@ -118,7 +118,7 @@ const Cart = () => {
                                                         <td><button className="prdct-delete" onClick={() => removeFromCart(index)}><i className="fa fa-trash-alt"></i></button></td>
                                                         <td><div className="product-img"><img src={image} alt="" /></div></td>
                                                         <td><div className="product-name"><p>{name}</p></div></td>
-                                                        <td>${price}</td>
+                                                        <td>{String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'}</td>
                                                         <td>
                                                             <div className="prdct-qty-container">
                                                                 <button className="prdct-qty-btn" type="button" onClick={() => decreaseQuantity(index)}>
@@ -130,7 +130,7 @@ const Cart = () => {
                                                                 </button>
                                                             </div>
                                                         </td>
-                                                        <td className="text-right">${(qty * price).toFixed(0)}</td>
+                                                        <td className="text-right">{String(qty * price).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'}</td>
                                                     </tr>
                                                 )
                                             })
@@ -147,7 +147,7 @@ const Cart = () => {
                                             </th>
                                             <th>&nbsp;</th>
                                             <th>Số lượng<span className="ml-2 mr-2">:</span><span className="text-danger">{cartTotalQty}</span></th>
-                                            <th className="text-right">Tổng giá<span className="ml-2 mr-2">:</span><span className="text-danger">$ {cartTotalAmount.toFixed(0)}</span></th>
+                                            <th className="text-right">Tổng giá<span className="ml-2 mr-2">:</span><span className="text-danger">{String(cartTotalAmount).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'}</span></th>
                                         </tr>
                                     </tfoot>
                                 </table>
