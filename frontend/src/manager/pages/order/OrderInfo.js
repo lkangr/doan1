@@ -56,7 +56,7 @@ const OrderInfo = ({ data, show, handleClose }) => {
               <p>Tổng tiền đơn hàng: </p>
             </div>
             <div className="col-8">
-              <p>{data.total}</p>
+              <p>{String(data.total).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'}</p>
             </div>
             <div className="col-4 fw-bold">
               <p>Thời gian: </p>

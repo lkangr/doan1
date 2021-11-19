@@ -31,7 +31,7 @@ const Tables = () => {
       {data.map(row =>
         <tr>
           <td>{row.id}</td>
-          <td>{row.total}</td>
+          <td>{String(row.total).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'}</td>
           <td>{new Date(row.time).toLocaleString()}</td>
           {row.status === 'D' ? <td>Đang giao</td> : row.status === 'F' ? <td>Hoàn thành</td> : <td>Hủy đơn</td>}
           <td>
