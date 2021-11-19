@@ -1,6 +1,8 @@
 import { Modal } from "react-bootstrap";
 
-const OrderInfo = ({ data, show, handleClose }) => {
+import OrderDetail from "./OrderDetail";
+
+const OrderInfo = ({ data, flist, show, handleClose }) => {
 
   return (
     <Modal
@@ -70,6 +72,10 @@ const OrderInfo = ({ data, show, handleClose }) => {
             <div className="col-8">
               {data.status === 'D' ? <p>Đang giao</p> : data.status === 'F' ? <p>Hoàn thành</p> : <p>Hủy đơn</p>}
             </div>
+            <div className="col-12 fw-bold">
+              Thành phần đơn hàng:
+            </div>
+            {flist.map(row => <OrderDetail foodId={row.food_id} quantity={row.quantity} />)}
           </div>
         </div>
       </Modal.Body>

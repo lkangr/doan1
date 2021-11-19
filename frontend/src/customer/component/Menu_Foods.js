@@ -8,7 +8,7 @@ const Menu = ({name, desc, price, addItem}) => {
 
     useEffect(() => {
         axios
-        .get("/api/food")
+        .get("/api/food?type=1")
         .then((res) => setData(res.data));
     }, [])
 

@@ -5,10 +5,11 @@ import axios from 'axios';
 
 import OrderInfo from "./OrderInfo";
 
-const Tables = () => {
+const Tables = ({ begin, end }) => {
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
   const [info, setInfo] = useState([]);
+  const [flist, setFlist] = useState([]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -17,14 +18,19 @@ const Tables = () => {
     axios
       .get(`/api/order/${row}`)
       .then((res) => setInfo(res.data));
+    
+    axios
+      .get(`/api/food_order/${row}`)
+      .then((res) => setFlist(res.data));
+    
     handleShow();
   }
 
   useEffect(() => {
     axios
-      .get("/api/order")
+      .get(`/api/order?begin=${begin}&end=${end}`)
       .then((res) => setData(res.data));
-  }, [])
+  }, [begin, end])
 
   return (
     <>
@@ -38,7 +44,7 @@ const Tables = () => {
             <button type="button" className="btn btn-link" onClick={() => showInfo(row.id)}>Xem đơn hàng</button>
           </td>
         </tr>)}
-      <OrderInfo data={info} show={show} handleClose={handleClose} />
+      <OrderInfo data={info} flist={flist} show={show} handleClose={handleClose} />
     </>
   )
 }

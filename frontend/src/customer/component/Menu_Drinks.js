@@ -1,6 +1,17 @@
 import Item from "./Item";
 import "../css/box.css"
-const Menu = ({name, desc, menu, addItem}) => {
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+
+const Menu = ({name, desc, price, addItem}) => {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        axios
+        .get("/api/food?type=2")
+        .then((res) => setData(res.data));
+    }, [])
+
     return (
         <section className="features-boxed">
             <div className="container">
@@ -9,31 +20,16 @@ const Menu = ({name, desc, menu, addItem}) => {
                     <p className="text-center">{desc}</p>
                 </div>
                 <div className="row justify-content-center features">
-                <Item 
-                        name="Chicken 1"
-                        desc="Đây là một dòng mô tả về đồ uống"
-                        price="1"
-                    />
-                    <Item 
-                        name="Chicken 2"
-                        desc="Đây là một dòng mô tả về đồ uống"
-                    />
-                    <Item 
-                        name="Chicken 3"
-                        desc="Đây là một dòng mô tả về đồ uống"
-                    />
-                    <Item 
-                        name="Chicken 4"
-                        desc="Đây là một dòng mô tả về đồ uống"
-                    />
-                    <Item 
-                        name="Chicken 5"
-                        desc="Đây là một dòng mô tả về đồ uống"
-                    />
-                    <Item 
-                        name="Chicken 6"
-                        desc="Đây là một dòng mô tả về đồ uống"
-                    />
+                    {
+                        data.map((data, index) => (
+                            <Item 
+                                name= {data.name}
+                                desc= {data.info}
+                                img = {"http://127.0.0.1:8000"+data.image}
+                                price= {data.price}
+                            />
+                        ))
+                    }
                 </div>
             </div>
         </section>

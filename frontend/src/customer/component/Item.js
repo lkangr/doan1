@@ -12,7 +12,7 @@ const Item = ({name, desc, img, price}) => {
                     <button className="btn btn-success" type="button" onClick={() => addItem(name, price, img)}>
                         Thêm vào giỏ
                     </button>
-                    <span className="badge rounded-pill bg-danger price">${price}</span>
+                    <span className="badge rounded-pill bg-danger price">{String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'}</span>
                 </div>
             </div>
         </div>

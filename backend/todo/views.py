@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
+from datetime import datetime
 
 from .models import Category, Foods, Table, Staff, Reservation, Order, Food_Order
 from .serializers import CategorySerializer, FoodsSerializer, TableSerializer, StaffSerializer, ReservationSerializer, OrderSerializer, Food_OrderSerializer
@@ -43,7 +44,7 @@ def CategoryApi(request, id=0):
 def FoodApi(request, id=0):
     if request.method == 'GET':
         if id == 0:
-            foods = Foods.objects.all()
+            foods = Foods.objects.filter(category_id=request.GET['type'])
             foods_serializers = FoodsSerializer(foods, many=True)
             return JsonResponse(foods_serializers.data, safe=False)
         else:
@@ -166,7 +167,9 @@ def ReservationApi(request, id=0):
 def OrderApi(request, id=0):
     if request.method=='GET':
         if id == 0:
-            order = Order.objects.all().order_by('-id')
+            begin = datetime.strptime(request.GET['begin'], "%Y-%m-%d").date()
+            end = datetime.strptime(request.GET['end'], "%Y-%m-%d").date()
+            order = Order.objects.filter(time__date__range=(begin, end)).order_by('-id')
             order_serializer = OrderSerializer(order, many=True)
             return JsonResponse(order_serializer.data, safe=False)
         else:
@@ -200,8 +203,8 @@ def Food_OrderApi(request, id=0):
             fos_serializers = Food_OrderSerializer(fos, many=True)
             return JsonResponse(fos_serializers.data, safe=False)
         else:
-            fo = Food_Order.objects.get(id=id)
-            fo_serializer = Food_OrderSerializer(fo, many=False)
+            fo = Food_Order.objects.filter(order_id=id)
+            fo_serializer = Food_OrderSerializer(fo, many=True)
             return JsonResponse(fo_serializer.data, safe=False)
     elif request.method == 'POST':
         fo_data = JSONParser().parse(request)
