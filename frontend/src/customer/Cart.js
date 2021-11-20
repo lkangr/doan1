@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import { NavLink } from 'react-router-dom';
 import "./css/Cart.css";
 
 const ProductList = [];
+export var TotalAmount = 0;
 
 const Cart = () => {
     const productData = ProductList;
@@ -70,6 +70,10 @@ const Cart = () => {
     const cartTotalQty = products.reduce((acc, data) => acc + data.qty, 0);
     const cartTotalAmount = products.reduce((acc, data) => acc + data.price * data.qty, 0);
 
+    const calTotal = () => {
+        TotalAmount = cartTotalAmount;
+        alert (`total: ${TotalAmount}`)
+    }
 
    
     return(
@@ -140,7 +144,7 @@ const Cart = () => {
                                         <tr>
                                             <th colSpan="2">
                                                 <a href="/payment">
-                                                    <button className="btn btn-success mt-0 btn-sm" style={{height:"50px"}}>
+                                                    <button className="btn btn-success mt-0 btn-sm" style={{height:"50px"}} onClick={() => calTotal()}>
                                                         <h6>THANH TOÁN</h6>
                                                     </button>
                                                 </a>

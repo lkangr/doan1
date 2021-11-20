@@ -1,6 +1,10 @@
 import React from 'react';
-
 import "./css/Payment.css";
+import {TotalAmount} from './Cart';
+import axios from 'axios';
+
+// var food_order;
+const t = String(TotalAmount);
 
 export class MasterForm extends React.Component {
     constructor(props) {
@@ -9,12 +13,15 @@ export class MasterForm extends React.Component {
         currentStep: 1,
         fullname: '',
         email:  '',
+        tele: '',
         formality: '',
         address: '',
         cardNo: '',
         nameOnCard: '',
         expiryDate: '',
-        CVC: ''
+        CVC: '',
+        total: '',
+        foodlist: []
       }
     }
   
@@ -25,18 +32,54 @@ export class MasterForm extends React.Component {
       })    
     }
      
+    
     handleSubmit = event => {
       event.preventDefault()
-      const { fullname, email, formality, address, cardNo, nameOnCard, expiryDate, CVC } = this.state
-      alert(`Chi tiết đơn hàng: \n 
-             Họ và tên: ${fullname} \n
-             Email: ${email} \n 
-             Hình thức đặt hàng: ${formality} \n
-             Địa chỉ: ${address} \n
-             Số thẻ: ${cardNo} \n
-             Tên thẻ: ${nameOnCard} \n
-             Ngày hết hạn: ${expiryDate} \n
-             Mã CVC: ${CVC}`)
+      // const { fullname, tele, email, formality, address, cardNo, nameOnCard, expiryDate, CVC, foodlist} = this.state
+      this.setState = {
+        total : t,
+      }
+      axios.post(`/api/order`, { 
+        c_name: this.state.fullname,
+        c_tele: this.state.tele,
+        c_email: this.state.email,
+        formality: this.state.formality,
+        c_address: this.state.address,
+        total : t,
+        status: 'D',
+       })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+      // axios.get(`http://127.0.0.1:8000/api/order?type=`+{email})
+      // .then(res => {
+      //   const foodlist = res.data;
+      //   this.setState({ foodlist });
+      // })
+    
+      // ProductList.forEach(function(item) {
+      //   food_order = {
+      //     order_id: foodlist.id,
+      //     food_id: item["item_id"],
+      //     quantity: item["qty"],
+      //   }
+      //   axios.post(`http://127.0.0.1:8000/api/food_order`, { food_order })
+      //   .then(res => {
+      //     console.log(res);
+      //     console.log(res.data);
+      //   });
+      // });
+      // alert(`Chi tiết đơn hàng: \n 
+      //        Họ và tên: ${fullname} \n
+      //        Sdt: ${tele} \n
+      //        Email: ${email} \n 
+      //        Hình thức đặt hàng: ${formality} \n
+      //        Địa chỉ: ${address} \n
+      //        Số thẻ: ${cardNo} \n
+      //        Tên thẻ: ${nameOnCard} \n
+      //        Ngày hết hạn: ${expiryDate} \n
+      //        Mã CVC: ${CVC}`)
       this.props.history.push('/home');
     }
     
@@ -59,6 +102,7 @@ export class MasterForm extends React.Component {
   /*
   * the functions for our button
   */
+
   previousButton() {
     let currentStep = this.state.currentStep;
     if(currentStep !==1){
@@ -177,6 +221,7 @@ export class MasterForm extends React.Component {
                         currentStep={this.state.currentStep} 
                         handleChange={this.handleChange}
                         fullname={this.state.fullname}
+                        tele={this.state.tele}
                         email={this.state.email}
                         formality={this.state.formality}
                         address={this.state.address}
@@ -220,6 +265,16 @@ export class MasterForm extends React.Component {
           value={props.fullname}
           onChange={props.handleChange}
           />
+        <label htmlFor="tele">Số điện thoại</label>
+        <input
+          className="form-control"
+          id="tele"
+          name="tele"
+          type="text"
+          placeholder="0XXXXXXXXX"
+          value={props.tele}
+          onChange={props.handleChange}
+          />
         <label htmlFor="email">Email</label>
         <input
           className="form-control"
@@ -236,7 +291,7 @@ export class MasterForm extends React.Component {
           <input 
             id="formality"
             type="radio" 
-            value="Eat now" 
+            value="E" 
             name="formality" 
             onChange={props.handleChange}/> Ăn tại chỗ
           </div>
@@ -244,7 +299,7 @@ export class MasterForm extends React.Component {
           <input 
             id="formality"
             type="radio" 
-            value="Eat now" 
+            value="T" 
             name="formality" 
             onChange={props.handleChange}/> Mang đi
           </div>

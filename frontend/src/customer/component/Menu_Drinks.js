@@ -23,6 +23,7 @@ const Menu = ({name, desc, price, addItem}) => {
                     {
                         data.map((data, index) => (
                             <Item 
+                                item_id={data.id}
                                 name= {data.name}
                                 desc= {data.info}
                                 img = {"http://127.0.0.1:8000"+data.image}

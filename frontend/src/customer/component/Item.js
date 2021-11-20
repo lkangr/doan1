@@ -1,7 +1,6 @@
 import { ProductList } from "../Cart";
-// import MEDIA_URL from "C:/Users/PC/Downloads/HK211/CNPM/ProjectCNPM/UPDATING VERSION/doan1/backend/backend/settings"
 
-const Item = ({name, desc, img, price}) => {
+const Item = ({item_id ,name, desc, img, price}) => {
     return (
         <div className="col-sm-6 col-md-5 col-lg-4 item">
             <div className="box">
@@ -9,7 +8,7 @@ const Item = ({name, desc, img, price}) => {
                 <h3 className="name">{name}</h3>
                 <p className="description">{desc}</p>
                 <div className="d-flex justify-content-around align-items-center">
-                    <button className="btn btn-success" type="button" onClick={() => { addItem(name, price, img); alert("Đã thêm " + name + " vô giỏ hàng của bạn!") }}>
+                    <button className="btn btn-success" type="button" onClick={() => { addItem(item_id ,name, price, img); alert("Đã thêm " + name + " vô giỏ hàng của bạn!") }}>
                         Thêm vào giỏ
                     </button>
                     <span className="badge rounded-pill bg-danger price">{String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'}</span>
@@ -22,9 +21,10 @@ const Item = ({name, desc, img, price}) => {
 
 var id = 1;
 
-function addItem(name, price, img) {
+function addItem(item_id ,name, price, img) {
     var temp = {
         "id": id,
+        "item_id": item_id,
         "image": img,
         "name": name,
         "price": price,
