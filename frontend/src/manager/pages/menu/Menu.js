@@ -1,8 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
 import "./Menu.css";
-const Menu = () => {
-    return ( 
-	<>
+
+function Menu() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const [shown, setShown] = useState(false);
+  const handleOpen = () => setShown(false);
+  const handerOpen = () => setShown(true);
+
+
+  return (
+   <>
     <h1 className = "fw-bold p-3" > Thêm món </h1>
     <div>
     <div className = "container-fluid">
@@ -104,25 +116,49 @@ const Menu = () => {
     </div>
 	</div>
 	</div>
-	<div className = "col-sm-10">
     <div className = "space">
-    <ul className = "nav justify-content-end">
-    <li className = "nav-item">
-    <a className = "nav-link" href = "/foods">
-    <button type = "button" className = "btn btn-primary 2"> Thêm vào </button> 
-	</a> 
-	</li> 
-	<li className = "nav-item" >
-    <a className = "nav-link" href = "/foods">
-    <button type = "button" className = "btn btn-primary 2"> Hủy bỏ </button> 
-	</a> 
-	</li>
-	</ul> 
-	</div>
+         <div className = "row" >
+        <div className = "col-sm-8" >
+        <div className="adddishes">
+           <Button variant="primary" onClick={handleShow}>
+        Thêm vào
+      </Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Body>Thêm món ăn thành công</Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleClose} href="/manage/menu">
+            Tiếp tục
+          </Button>
+          <Button variant="secondary" onClick={handleClose} href="/foods">
+            Kết thúc
+          </Button>
+        </Modal.Footer>
+      </Modal> 
+        </div> 
+        </div>
+        <div className = "col-sm-4" >
+          <div className="cancel">
+         <Button variant="primary" onClick={handerOpen}>
+        Hủy bỏ
+      </Button>
+         <Modal show={shown} onHide={handleOpen}>
+        <Modal.Body>Thêm món ăn không thành công</Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleOpen} href="/manage/dashboard">
+            Trở lại trang admin
+          </Button>
+        </Modal.Footer>
+      </Modal> 
+        </div>
+        </div>
+        </div>
 	</div> 
 	</div>
     </>
-    )
+  );
 }
+
+
 
 export default Menu
