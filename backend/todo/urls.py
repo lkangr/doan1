@@ -22,4 +22,7 @@ urlpatterns = [
 
     url(r'^api/category$', views.CategoryApi),
     url(r'^api/category/(?P<id>[0-9]+)$', views.CategoryApi),
+
+    url(r'^api/summary$', views.summaryApi),
+    url(r'api/graph$', views.graphApi),
 ]
