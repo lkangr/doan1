@@ -91,7 +91,7 @@ const ReserveForm = () => {
           <button type="button" className="btn btn-primary m-1">Lưu và in</button>
           <button type="button" className="btn btn-primary m-1">Lưu</button>
           <a href="/reservation">
-            <button type="button" className="btn btn-secondary m-1">Xóa</button>
+            <button type="button" className="btn btn-secondary m-1">Hủy</button>
           </a>
         </div>
       </div>

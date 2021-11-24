@@ -17,10 +17,10 @@ const Tables = ({begin}) => {
       {data.map(row =>
         <tr>
           <td>{row.id}</td>
-          <td><img src={"http://127.0.0.1:8000" + row.avatar} width={100} height={100} alt="No IMG"/></td>
+          <td><img src={"http://127.0.0.1:8000" + row.avatar} width={100} height={100} alt="Không có ảnh"/></td>
           <td>{row.name}</td>
           <td>{row.email}</td>
-          {row.status === 'S' ? <td>Shipper</td> : row.status === 'R' ? <td>Receiption</td> : <td>Manager</td>}
+          {row.status === 'S' ? <td>Shipper</td> : row.status === 'R' ? <td>Tiếp tân</td> : <td>Quản lý</td>}
         </tr>)}
     </>
   )
