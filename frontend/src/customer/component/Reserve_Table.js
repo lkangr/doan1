@@ -23,7 +23,7 @@ const Menu = () => {
                     {
                         data.map((data, index) => (
                             <Table
-                                ID={data.id}
+                                id={data.id}
                                 state={data.status}
                             />
                         ))

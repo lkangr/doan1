@@ -1,3 +1,4 @@
+from types import MethodType
 from django.conf.urls import url 
 from todo import views 
  
@@ -10,7 +11,7 @@ urlpatterns = [
 
     url(r'^api/table$', views.TableApi),
     url(r'^api/table/(?P<id>[0-9]+)$', views.TableApi),
-
+    
     url(r'^api/reservation$', views.ReservationApi),
     url(r'^api/reservation/(?P<id>[0-9]+)$', views.ReservationApi),
 
