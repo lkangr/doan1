@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
@@ -254,4 +255,12 @@ def OrderApi2(request, id=0):
             order = Order.objects.order_by('-id')[:1]
             order_serializer = OrderSerializer(order, many=True)
             return JsonResponse(order_serializer.data, safe=False)
-      
+
+@csrf_exempt      
+def CheckAuth(request):
+    if request.method == 'POST':
+        data = JSONParser().parse(request)
+        if data['username'] == 'admin' and data['password'] == '123456':
+            return JsonResponse("Success", safe=False)
+        else: 
+            return JsonResponse("Failed", safe=False)
