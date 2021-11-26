@@ -28,4 +28,6 @@ urlpatterns = [
     url(r'^api/graph$', views.graphApi),
   
     url(r'^api/order2$', views.OrderApi2),
+
+    url(r'^auth$', views.CheckAuth),
 ]

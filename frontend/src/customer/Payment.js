@@ -41,26 +41,27 @@ export class MasterForm extends React.Component {
       let order = 0
       event.preventDefault()
       const { fullname, tele, email, formality, address, cardNo, nameOnCard, expiryDate, CVC, total, foodlist, orderID} = this.state
-      axios.post(`/api/order`, { 
-        c_name: this.state.fullname,
-        c_tele: this.state.tele,
-        c_email: this.state.email,
-        formality: this.state.formality,
-        c_address: this.state.address,
-        total : this.state.total,
-        status: 'D',
-       })
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      });
+      axios.post(`/api/order`, {
+          c_name: this.state.fullname,
+          c_tele: this.state.tele,
+          c_email: this.state.email,
+          formality: this.state.formality,
+          c_address: this.state.address,
+          total: this.state.total,
+          status: 'D',
+        })
+          .then(res => {
+            console.log(res);
+            console.log(res.data);
+          });
       
-      axios.get(`/api/order2`)
+      setTimeout(() => {
+        axios.get(`/api/order2`)
       .then(res => {
         res.data.map(order =>{ const {id, c_name, c_tele, c_email, formality, c_address, total, time, status} = order
         this.state.foodlist.forEach(function(item) {
           axios.post(`/api/food_order`, { 
-            order_id: id+1,
+            order_id: id,
             food_id: item.item_id,
             quantity: item.qty
            })
@@ -71,6 +72,7 @@ export class MasterForm extends React.Component {
         })
         });
       });
+      }, 500);
       // axios.post(`/api/food_order`, { 
       //   order_id: 73,
       //   food_id: this.state.foodlist[0].item_id,
