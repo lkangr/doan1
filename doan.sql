@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 18, 2021 lúc 05:32 PM
+-- Thời gian đã tạo: Th10 26, 2021 lúc 05:10 PM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
--- Phiên bản PHP: 8.0.10
+-- Phiên bản PHP: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -525,8 +525,29 @@ CREATE TABLE `todo_reservation` (
   `no_customer` int(11) NOT NULL,
   `interval` int(11) NOT NULL,
   `staff_name_id` int(11) DEFAULT NULL,
-  `table_id_id` int(11) NOT NULL
+  `table_id_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `todo_reservation`
+--
+
+INSERT INTO `todo_reservation` (`id`, `rtime`, `no_customer`, `interval`, `staff_name_id`, `table_id_id`, `name`) VALUES
+(12, '2022-12-12 12:12:00.000000', 3, 3, NULL, 1, 'qweqwe'),
+(13, '2022-12-12 12:12:00.000000', 3, 3, NULL, 1, 'qweqwe'),
+(14, '2022-12-12 12:12:00.000000', 3, 3, NULL, 1, 'qweqwe'),
+(15, '2022-12-12 12:12:00.000000', 3, 3, NULL, 1, 'qweqwe'),
+(16, '2022-12-12 12:12:00.000000', 3, 3, NULL, 1, 'qweqwe'),
+(17, '2022-12-12 12:12:00.000000', 3, 2, NULL, 3, 'asdsad'),
+(18, '2022-12-12 12:12:00.000000', 4, 3, NULL, 3, '1212'),
+(19, '2022-12-12 12:12:00.000000', 4, 3, NULL, 3, '1212'),
+(20, '2022-12-12 12:12:00.000000', 4, 3, NULL, 3, '1212'),
+(21, '2022-12-12 12:12:00.000000', 4, 3, NULL, 3, '1212'),
+(22, '2022-12-12 12:12:00.000000', 4, 3, NULL, 3, '1212'),
+(23, '2022-12-12 12:12:00.000000', 4, 3, NULL, 3, '1212'),
+(24, '2022-12-12 12:12:00.000000', 4, 3, NULL, 3, '1212'),
+(25, '2022-12-12 12:12:00.000000', 4, 2, NULL, 1, 'skxjfhsjsa');
 
 -- --------------------------------------------------------
 
@@ -543,6 +564,14 @@ CREATE TABLE `todo_staff` (
   `staff_type` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `todo_staff`
+--
+
+INSERT INTO `todo_staff` (`id`, `name`, `email`, `password`, `avatar`, `staff_type`) VALUES
+(1, 'minh', 'abc@123', '123456', '', 'M'),
+(2, 'chu', 'chu@123', '12321', '', 'S');
+
 -- --------------------------------------------------------
 
 --
@@ -553,6 +582,15 @@ CREATE TABLE `todo_table` (
   `id` int(11) NOT NULL,
   `status` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `todo_table`
+--
+
+INSERT INTO `todo_table` (`id`, `status`) VALUES
+(1, '1'),
+(2, '1'),
+(3, '0');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -764,19 +802,19 @@ ALTER TABLE `todo_order`
 -- AUTO_INCREMENT cho bảng `todo_reservation`
 --
 ALTER TABLE `todo_reservation`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT cho bảng `todo_staff`
 --
 ALTER TABLE `todo_staff`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `todo_table`
 --
 ALTER TABLE `todo_table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
