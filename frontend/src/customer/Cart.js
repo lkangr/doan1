@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import "./css/Cart.css";
+import {Link} from 'react-router-dom';
 
 const ProductList = [];
-export var TotalAmount = 0;
 
 const Cart = () => {
     const productData = ProductList;
@@ -40,7 +40,7 @@ const Cart = () => {
         );
     };
 
-
+    
 
     // -----Remove Event------
     const removeFromCart = (i) => {
@@ -70,12 +70,6 @@ const Cart = () => {
     const cartTotalQty = products.reduce((acc, data) => acc + data.qty, 0);
     const cartTotalAmount = products.reduce((acc, data) => acc + data.price * data.qty, 0);
 
-    const calTotal = () => {
-        TotalAmount = cartTotalAmount;
-        alert (`total: ${TotalAmount}`)
-    }
-
-   
     return(
         
        <div className="row justify-content-center m-0">
@@ -143,11 +137,14 @@ const Cart = () => {
                                     <tfoot>
                                         <tr>
                                             <th colSpan="2">
-                                                <a href="/payment">
-                                                    <button className="btn btn-success mt-0 btn-sm" style={{height:"50px"}} onClick={() => calTotal()}>
+                                                <Link to = {{pathname: "/payment", 
+                                                    state: {
+                                                        total: cartTotalAmount,
+                                                        fList: ProductList}}}>
+                                                    <button className="btn btn-success mt-0 btn-sm" style={{height:"50px"}}>
                                                         <h6>THANH TOÁN</h6>
                                                     </button>
-                                                </a>
+                                                </Link>
                                             </th>
                                             <th>&nbsp;</th>
                                             <th>Số lượng<span className="ml-2 mr-2">:</span><span className="text-danger">{cartTotalQty}</span></th>

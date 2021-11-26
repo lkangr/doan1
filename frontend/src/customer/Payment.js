@@ -1,10 +1,6 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import "./css/Payment.css";
-import {TotalAmount} from './Cart';
 import axios from 'axios';
-
-// var food_order;
-const t = String(TotalAmount);
 
 export class MasterForm extends React.Component {
     constructor(props) {
@@ -20,11 +16,19 @@ export class MasterForm extends React.Component {
         nameOnCard: '',
         expiryDate: '',
         CVC: '',
-        total: '',
-        foodlist: []
+        total: this.props.location.state.total, 
+        foodlist: this.props.location.state.fList,
+        orderID: 0
       }
+      // this.updateState = this.updateState.bind(this) 
     }
-  
+    
+    // updateState(newValue) {
+    //   this.setState({
+    //     ...this.state, orderID: newValue
+    //   })
+    // }
+    
     handleChange = event => {
       const {name, value} = event.target
       this.setState({
@@ -34,42 +38,66 @@ export class MasterForm extends React.Component {
      
     
     handleSubmit = event => {
+      let order = 0
       event.preventDefault()
-      // const { fullname, tele, email, formality, address, cardNo, nameOnCard, expiryDate, CVC, foodlist} = this.state
-      this.setState = {
-        total : t,
-      }
+      const { fullname, tele, email, formality, address, cardNo, nameOnCard, expiryDate, CVC, total, foodlist, orderID} = this.state
       axios.post(`/api/order`, { 
         c_name: this.state.fullname,
         c_tele: this.state.tele,
         c_email: this.state.email,
         formality: this.state.formality,
         c_address: this.state.address,
-        total : t,
+        total : this.state.total,
         status: 'D',
        })
       .then(res => {
         console.log(res);
         console.log(res.data);
-      })
-      // axios.get(`http://127.0.0.1:8000/api/order?type=`+{email})
+      });
+      
+      axios.get(`/api/order2`)
+      .then(res => {
+        res.data.map(order =>{ const {id, c_name, c_tele, c_email, formality, c_address, total, time, status} = order
+        this.state.foodlist.forEach(function(item) {
+          axios.post(`/api/food_order`, { 
+            order_id: id+1,
+            food_id: item.item_id,
+            quantity: item.qty
+           })
+          .then(res => {
+            console.log(res);
+            console.log(res.data);
+          });
+        })
+        });
+      });
+      // axios.post(`/api/food_order`, { 
+      //   order_id: 73,
+      //   food_id: this.state.foodlist[0].item_id,
+      //   quantity: this.state.foodlist[0].qty
+      //  })
       // .then(res => {
-      //   const foodlist = res.data;
-      //   this.setState({ foodlist });
-      // })
-    
-      // ProductList.forEach(function(item) {
-      //   food_order = {
-      //     order_id: foodlist.id,
-      //     food_id: item["item_id"],
-      //     quantity: item["qty"],
-      //   }
-      //   axios.post(`http://127.0.0.1:8000/api/food_order`, { food_order })
+      //   console.log(res);
+      //   console.log(res.data);
+      // });
+      
+      
+      
+      // let bodyFormData = new FormData();
+      // this.props.location.state.fList.forEach((item) => {
+      //   bodyFormData.append(order_id, 73)
+      //   bodyFormData.append(food_id, item["item_id"])
+      //   bodyFormData.append(quantity, item["qty"])
+      //   console.log(bodyFormData)
+      //   axios.post(`/api/food_order`, bodyFormData, { 'content-type': 'multipart/form-data' })
       //   .then(res => {
       //     console.log(res);
       //     console.log(res.data);
       //   });
       // });
+      
+      
+      
       // alert(`Chi tiết đơn hàng: \n 
       //        Họ và tên: ${fullname} \n
       //        Sdt: ${tele} \n
@@ -247,7 +275,9 @@ export class MasterForm extends React.Component {
         </React.Fragment>
       );
     }
-  }
+  };
+
+  
   
   function Step1(props) {
     if (props.currentStep !== 1) {
@@ -382,4 +412,7 @@ export class MasterForm extends React.Component {
       </React.Fragment>
     );
   }
+
+  
+
   

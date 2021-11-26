@@ -23,4 +23,6 @@ urlpatterns = [
 
     url(r'^api/category$', views.CategoryApi),
     url(r'^api/category/(?P<id>[0-9]+)$', views.CategoryApi),
+
+    url(r'^api/order2$', views.OrderApi2),
 ]
