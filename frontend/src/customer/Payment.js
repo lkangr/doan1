@@ -72,7 +72,7 @@ export class MasterForm extends React.Component {
         })
         });
       });
-      }, 500);
+      }, 500);i
       // axios.post(`/api/food_order`, { 
       //   order_id: 73,
       //   food_id: this.state.foodlist[0].item_id,
