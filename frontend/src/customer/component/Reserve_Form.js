@@ -20,7 +20,6 @@ const ReserveForm = () => {
   }
 
   function submit(e){
-    e.preventDefault();
     Axios.post(url,{
       rtime: data.rtime,
       no_customer: data.no_customer,
@@ -32,6 +31,7 @@ const ReserveForm = () => {
     .then(res=>{
       console.log(res.data)
     })
+    alert("Đặt bàn thành công!")
   }
 
   return (
@@ -108,7 +108,7 @@ const ReserveForm = () => {
           </div>
         </div>
         <div className="m-2 text-end">
-          <button type="button" className="btn btn-primary m-1" onClick={(e)=>submit(e)}>Lưu</button>
+          <a type="button" className="btn btn-primary m-1" onClick={(e)=>submit(e)} href="/foods">Lưu</a>
           <a href="/reservation">
             <button type="button" className="btn btn-secondary m-1">Hủy</button>
           </a>

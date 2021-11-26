@@ -40,11 +40,13 @@ class Staff(models.Model):
     staff_type = models.CharField(max_length=1, choices=STAFF_TYPE)
 
 class Reservation(models.Model):
+    id = models.BigAutoField(primary_key=True)
     table_id = models.ForeignKey(Table, on_delete=CASCADE)
-    rtime = models.DateTimeField(auto_now_add=True)
+    rtime = models.DateTimeField()
     no_customer = models.IntegerField()
     interval = models.IntegerField()    #don vi: gio
     staff_name = models.ForeignKey(Staff, on_delete=CASCADE, null=True)
+    name = models.CharField(max_length=100)
 
 
 class Order(models.Model):
