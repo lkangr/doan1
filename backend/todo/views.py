@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
-from datetime import datetime
+from datetime import datetime, timedelta
+from django.db.models import Count, Sum
 
 from .models import Category, Foods, Table, Staff, Reservation, Order, Food_Order
 from .serializers import CategorySerializer, FoodsSerializer, TableSerializer, StaffSerializer, ReservationSerializer, OrderSerializer, Food_OrderSerializer
@@ -175,7 +176,7 @@ def OrderApi(request, id=0):
             return JsonResponse(order_serializer.data, safe=False)
         else:
             order = Order.objects.get(id=id)
-            # order = Order.objects.get(c_email=request.GET['type'])
+
             order_serializer = OrderSerializer(order, many=False)
             return JsonResponse(order_serializer.data, safe=False)
     elif request.method == 'POST':
@@ -229,6 +230,23 @@ def Food_OrderApi(request, id=0):
         fo.delete()
         return JsonResponse("Delete Successfully", safe=False)
 
+def summaryApi(request):
+    if request.method == 'GET':
+        sm = Order.objects.aggregate(sum_total=Sum('total'), num_order=Count('id'))
+        return JsonResponse(sm, safe=False)
+
+def graphApi(request):
+    if request.method == 'GET':
+        if 'year' not in request.GET:
+            rq = Order.objects.filter(time__date__range=(datetime.today().date()-timedelta(7), datetime.today().date())).values('time__date').order_by('time__date').annotate(count=Count('id'))
+            return JsonResponse(list(rq), safe=False)
+        elif 'month' not in request.GET:
+            rq = Order.objects.filter(time__year=request.GET['year']).values('time__month').order_by('time__month').annotate(count=Count('id'), sum=Sum('total'))
+            return JsonResponse(list(rq), safe=False)
+        else:
+            rq = Order.objects.filter(time__year=request.GET['year'], time__month=request.GET['month']).values('time__date').order_by('time__date').annotate(count=Count('id'), sum=Sum('total'))
+            return JsonResponse(list(rq), safe=False)
+            
 @csrf_exempt
 def OrderApi2(request, id=0):
     if request.method=='GET':
@@ -236,3 +254,4 @@ def OrderApi2(request, id=0):
             order = Order.objects.order_by('-id')[:1]
             order_serializer = OrderSerializer(order, many=True)
             return JsonResponse(order_serializer.data, safe=False)
+      

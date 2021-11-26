@@ -116,7 +116,7 @@ function Menu() {
     </div>
 	</div>
 	</div>
-    <div className = "space">
+    <div className = "container">
          <div className = "row" >
         <div className = "col-sm-8" >
         <div className="adddishes">
