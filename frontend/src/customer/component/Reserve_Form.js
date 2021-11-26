@@ -1,6 +1,39 @@
-
+import React, { useState } from 'react';
+import Axios from 'axios';
 
 const ReserveForm = () => {
+  const url = "http://localhost:8000/api/reservation"
+  const [data,setData] = useState({
+    rtime: "",
+    no_customer: "",
+    interval: "",
+    staff_name_id: "",
+    table_id: "",
+    name: ""
+  })
+
+  function handle(e){
+    const newdata={...data}
+    newdata[e.target.id] = e.target.value
+    setData(newdata)
+    console.log(newdata)
+  }
+
+  function submit(e){
+    Axios.post(url,{
+      rtime: data.rtime,
+      no_customer: data.no_customer,
+      interval: data.interval,
+      staff_name_id: data.staff_name_id,
+      table_id: data.table_id,
+      name: data.name
+    })
+    .then(res=>{
+      console.log(res.data)
+    })
+    alert("Đặt bàn thành công!")
+  }
+
   return (
     <>
     <h1 className="m-5">Thêm mới đặt bàn</h1>
@@ -13,15 +46,7 @@ const ReserveForm = () => {
                 <p className="fw-bold">Khách hàng</p>
               </div>
               <div className="col-9">
-                <input type="text" className="form-control" />
-              </div>
-            </div>
-            <div className="row m-2">
-              <div className="col-3">
-                <p className="fw-bold">Mã đặt bàn</p>
-              </div>
-              <div className="col-9">
-                <input type="text" className="form-control" />
+                <input onChange={(e)=>handle(e)} id = "name" value={data.name} type="text" className="form-control" />
               </div>
             </div>
             <div className="row m-2">
@@ -29,7 +54,7 @@ const ReserveForm = () => {
                 <p className="fw-bold">Giờ đến</p>
               </div>
               <div className="col-9">
-                <input type="datetime-local" className="form-control" />
+                <input onChange={(e)=>handle(e)} id = "rtime" value={data.rtime} type="datetime-local" className="form-control" />
               </div>
             </div>
             <div className="row m-2">
@@ -42,22 +67,8 @@ const ReserveForm = () => {
                     <p className="text-muted text-end">Giờ</p>
                   </div>
                   <div className="col-3">
-                    <input type="number" className="form-control" />
+                    <input onChange={(e)=>handle(e)} id = "interval" value={data.interval} type="number" className="form-control" />
                   </div>
-                </div>
-              </div>
-            </div>
-            <div className="row m-2">
-              <div className="col-3">
-                <p className="fw-bold">Số khách</p>
-              </div>
-              <div className="col-9">
-                <div className="row">
-                  
-                  <div className="col-3">
-                    <input type="number" className="form-control" /> 
-                  </div>
-                  
                 </div>
               </div>
             </div>
@@ -68,30 +79,38 @@ const ReserveForm = () => {
                 <p className="fw-bold">NV nhận đặt</p>
               </div>
               <div className="col-9">
-                <input type="text" className="form-control" />
+                <input onChange={(e)=>handle(e)} id = "staff_name_id" value={data.staff_name_id} type="text" className="form-control" />
               </div>
             </div>
             <div className="row m-2">
               <div className="col-3">
-                <p className="fw-bold">Phòng/Bàn</p>
+                <p className="fw-bold">Bàn</p>
               </div>
               <div className="col-9">
-                <input type="text" className="form-control" />
+                <input onChange={(e)=>handle(e)} id = "table_id" value={data.table_id} type="text" className="form-control" />
                 <a href="#" className="float-end">Xem bàn trống</a>
               </div>
             </div>
             <div className="row m-2">
-              <div className="col-12">
-                <input type="text" className="form-control" placeholder="Ghi chú" />
+              <div className="col-3">
+                <p className="fw-bold">Số khách</p>
+              </div>
+              <div className="col-9">
+                <div className="row">
+                  
+                  <div className="col-3">
+                    <input onChange={(e)=>handle(e)} id = "no_customer" value={data.no_customer} type="number" className="form-control" /> 
+                  </div>
+                  
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div className="m-2 text-end">
-          <button type="button" className="btn btn-primary m-1">Lưu và in</button>
-          <button type="button" className="btn btn-primary m-1">Lưu</button>
+          <a type="button" className="btn btn-primary m-1" onClick={(e)=>submit(e)} href="/foods">Lưu</a>
           <a href="/reservation">
-            <button type="button" className="btn btn-secondary m-1">Xóa</button>
+            <button type="button" className="btn btn-secondary m-1">Hủy</button>
           </a>
         </div>
       </div>

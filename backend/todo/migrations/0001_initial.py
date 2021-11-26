@@ -55,11 +55,12 @@ class Migration(migrations.Migration):
             name='Reservation',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('rtime', models.DateTimeField(auto_now_add=True)),
+                ('rtime', models.DateTimeField()),
                 ('no_customer', models.IntegerField()),
                 ('interval', models.IntegerField()),
                 ('staff_name', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='todo.staff')),
                 ('table_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='todo.table')),
+                ('name',models.CharField(max_length=100)),
             ],
         ),
         migrations.CreateModel(

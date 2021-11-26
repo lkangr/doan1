@@ -37,6 +37,9 @@ const Sidebar = () => {
             <NavLink to="/manage/order" activeStyle={{fontWeight: "bold", color: "red"}}>
               <CDBSidebarMenuItem icon="list">Đơn hàng</CDBSidebarMenuItem>
             </NavLink>
+            <NavLink to="/manage/employee" activeStyle={{fontWeight: "bold", color: "red"}}>
+              <CDBSidebarMenuItem icon="user">Quản lý nhân viên</CDBSidebarMenuItem>
+            </NavLink>
             <NavLink to="/manage/analytic" activeStyle={{fontWeight: "bold", color: "red"}}>
               <CDBSidebarMenuItem icon="chart-line">Thống kê</CDBSidebarMenuItem>
             </NavLink>

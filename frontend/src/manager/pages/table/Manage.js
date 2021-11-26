@@ -14,12 +14,12 @@ const ManageTable = () => {
         <Table striped bordered hover>
           <thead>
             <tr>
+              <th>Mã đặt bàn</th>
               <th>Bàn số</th>
-              <th>Thời gian</th>
+              <th>Tên khách hàng</th>
+              <th>Thời gian đặt</th>
               <th>Thời lượng</th>
               <th>Số người</th>
-              <th>Tổng tiền</th>
-              <th>Trạng thái</th>
               <th></th>
             </tr>
           </thead>

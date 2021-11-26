@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Data from "./Data"
 import React from 'react';
 import axios from 'axios';
 

@@ -6,7 +6,7 @@ import Order from "./pages/order/Order"
 import Analytic from "./pages/analytic/Analytic"
 import TableRoute from "./pages/table/router"
 import Menu from "./pages/menu/Menu";
-
+import EManager from "./pages/emp_manager/EmployeeManager";
 const ManageRoute = () => {
   return (
     <Switch>
@@ -21,6 +21,9 @@ const ManageRoute = () => {
       </Route>
       <Route path="/manage/table">
         <TableRoute />
+      </Route>
+      <Route path="/manage/employee">
+        <EManager />
       </Route>
       <Route path="/manage/menu">
         <Menu />

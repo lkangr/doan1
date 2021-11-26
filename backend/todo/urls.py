@@ -1,3 +1,4 @@
+from types import MethodType
 from django.conf.urls import url 
 from todo import views 
  
@@ -10,7 +11,7 @@ urlpatterns = [
 
     url(r'^api/table$', views.TableApi),
     url(r'^api/table/(?P<id>[0-9]+)$', views.TableApi),
-
+    
     url(r'^api/reservation$', views.ReservationApi),
     url(r'^api/reservation/(?P<id>[0-9]+)$', views.ReservationApi),
 
@@ -22,7 +23,9 @@ urlpatterns = [
 
     url(r'^api/category$', views.CategoryApi),
     url(r'^api/category/(?P<id>[0-9]+)$', views.CategoryApi),
-
+  
     url(r'^api/summary$', views.summaryApi),
-    url(r'api/graph$', views.graphApi),
+    url(r'^api/graph$', views.graphApi),
+  
+    url(r'^api/order2$', views.OrderApi2),
 ]

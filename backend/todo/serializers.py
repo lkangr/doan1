@@ -24,7 +24,7 @@ class StaffSerializer(serializers.ModelSerializer):
 class ReservationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reservation
-        fields = ('table_id', 'rtime', 'no_customer', 'interval', 'staff_name')
+        fields = ('id','table_id', 'rtime', 'no_customer', 'interval', 'staff_name','name')
 
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:

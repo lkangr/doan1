@@ -176,6 +176,7 @@ def OrderApi(request, id=0):
             return JsonResponse(order_serializer.data, safe=False)
         else:
             order = Order.objects.get(id=id)
+
             order_serializer = OrderSerializer(order, many=False)
             return JsonResponse(order_serializer.data, safe=False)
     elif request.method == 'POST':
@@ -198,6 +199,7 @@ def OrderApi(request, id=0):
         order.delete()
         return JsonResponse("Delete Successfully", safe=False)
 
+@csrf_exempt
 def Food_OrderApi(request, id=0):
     if request.method == 'GET':
         if id == 0:
@@ -245,5 +247,11 @@ def graphApi(request):
             rq = Order.objects.filter(time__year=request.GET['year'], time__month=request.GET['month']).values('time__date').order_by('time__date').annotate(count=Count('id'), sum=Sum('total'))
             return JsonResponse(list(rq), safe=False)
             
-
-#return JsonResponse(datetime.today().date()-timedelta(7), safe=False)
+@csrf_exempt
+def OrderApi2(request, id=0):
+    if request.method=='GET':
+        if id == 0:
+            order = Order.objects.order_by('-id')[:1]
+            order_serializer = OrderSerializer(order, many=True)
+            return JsonResponse(order_serializer.data, safe=False)
+      
