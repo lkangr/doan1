@@ -35,7 +35,7 @@ const ReserveForm = () => {
   }
 
   return (
-    <>
+    <section className="features-boxed1">
     <h1 className="m-5">Thêm mới đặt bàn</h1>
     <form>
       <div className="container">
@@ -115,7 +115,7 @@ const ReserveForm = () => {
         </div>
       </div>
     </form>
-    </>
+    </section>
   )
 }
 
