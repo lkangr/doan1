@@ -62,7 +62,8 @@ const Customer = () => {
       <br></br>
       <br></br>
       <br></br>
-
+      <br></br>
+      <br></br>
         <Switch>
           <Route path = "/foods" component = {Foods}/>
           <Route path = "/drinks" component = {Drinks}/>
