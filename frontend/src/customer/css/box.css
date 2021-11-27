@@ -1,7 +1,8 @@
 .features-boxed { 
     color: #000;
     background-color: var(--bs-light);
-    border: 2px solid #0d6efd;
+    border: 2px solid #edf0f3;
+    border-radius: 15px;
 }
 
 .features-boxed p {
