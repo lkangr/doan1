@@ -4,7 +4,7 @@ import "./css/Footer.css";
 function Footer() {
     return(
         <div className = "main-footer">
-            <div className = "container">
+            <div className = "container" style={{color: 'white'}}>
                 <div className = "row">
                     <h4 className = "d-flex justify-content-center">
                         Restaurant Name
