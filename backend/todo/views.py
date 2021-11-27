@@ -1,10 +1,11 @@
-import re
+from django.core.files.storage import default_storage
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from datetime import datetime, timedelta
 from django.db.models import Count, Sum
+import json
 
 from .models import Category, Foods, Table, Staff, Reservation, Order, Food_Order
 from .serializers import CategorySerializer, FoodsSerializer, TableSerializer, StaffSerializer, ReservationSerializer, OrderSerializer, Food_OrderSerializer
@@ -54,12 +55,22 @@ def FoodApi(request, id=0):
             food_serializer = FoodsSerializer(food, many=False)
             return JsonResponse(food_serializer.data, safe=False)
     elif request.method == 'POST':
-        food_data = JSONParser().parse(request)
-        foods_serializers = FoodsSerializer(data=food_data)
-        if foods_serializers.is_valid():
-            foods_serializers.save()
-            return JsonResponse("Added Successfully", safe=False)
-        return JsonResponse("Failed to Add", safe=False)
+        im = request.FILES['image']
+        img = default_storage.save(im.name, im)
+        Foods(
+            name = request.POST['name'],
+            info = request.POST['info'],
+            qty_day = request.POST['qty_day'],
+            image = img,
+            category_id = Category(request.POST['category_id']),
+            price = request.POST['price'],
+            cost = request.POST['cost']
+        ).save()
+        # foods_serializers = FoodsSerializer(data=food_data)
+        # if foods_serializers.is_valid():
+        #     foods_serializers.save()
+        return JsonResponse("Added Successfully", safe=False)
+        # return JsonResponse("Failed to Add", safe=False)
     elif request.method == 'PUT':
         food_data = JSONParser().parse(request)
         food = Foods.objects.get(id = food_data['id'])

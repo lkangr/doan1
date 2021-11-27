@@ -140,7 +140,7 @@ const Cart = () => {
                                                 <Link to = {{pathname: "/payment", 
                                                     state: {
                                                         total: cartTotalAmount,
-                                                        fList: ProductList}}}>
+                                                        fList: products}}}>
                                                     <button className="btn btn-success mt-0 btn-sm" style={{height:"50px"}}>
                                                         <h6>THANH TOÁN</h6>
                                                     </button>
