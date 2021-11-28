@@ -1,6 +1,5 @@
 import React, { useState,} from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import axios from 'axios';
 import "./Menu.css";
 
 const AddMenu = () => {
