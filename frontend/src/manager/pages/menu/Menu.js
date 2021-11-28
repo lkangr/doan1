@@ -1,36 +1,78 @@
-import React, { Component, useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import React, { Component} from 'react';
+import axios from 'axios';
 import "./Menu.css";
+import AddMenu from "./AddMenu.js";
+class Menu extends Component {
+  
 
-function Menu() {
-  const [show, setShow] = useState(false);
+  state = {
+    name: "",
+    info: "",
+    qty_day: 0,
+    image: null,
+    category_id: 1,
+    price: 0,
+    cost: 0
+  };
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  handleChange = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value
+    })
+  };
 
-  const [shown, setShown] = useState(false);
-  const handleOpen = () => setShown(false);
-  const handerOpen = () => setShown(true);
+  handleImageChange = (e) => {
+    this.setState({
+      image: e.target.files[0]
+    })
+  };
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(this.state);
+    let form_data = new FormData();
+    form_data.append('name', this.state.name);
+    form_data.append('info', this.state.info);
+    form_data.append('qty_day', this.state.qty_day);
+    form_data.append('image', this.state.image);
+    form_data.append('category_id', this.state.category_id);
+    form_data.append('price', this.state.price);
+    form_data.append('cost', this.state.cost);
+    let url = 'http://127.0.0.1:8000/api/food';
+    axios.post(url, form_data, {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    })
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(err => console.log(err))
+  };
 
-  return (
-   <>
+  render() {
+    return (
+      <div className="App">
+
     <h1 className = "fw-bold p-3" > Thêm món </h1>
+        <form onSubmit={this.handleSubmit}>
+      
+      <div className="Menu_1">
     <div>
     <div className = "container-fluid">
     <div className = "row">
     <div className = "col-sm-9">
     <form>
     <div className = "input-group">
-    <span className = "input-group-text"> Tên món * </span>  
-	<input className = "form-control" placeholder = "" />
+    <span className = "input-group-text"> Tên món </span>  
+	  <input id="name" name="name" className = "form-control" type ="text" value={this.state.name} onChange={this.handleChange} required/>
     </div> 
-	</form> 
+	  </form> 
 	<br/>
     <form>
     <div className = "input-group">
-    <span className = "input-group-text"> Mã món * </span>
-	<input className = "form-control" placeholder = "" />
+    <span className = "input-group-text"> Mã món </span>
+	<input type="number" min={1} className = "form-control" name = "id" value={this.state.id} onChange={this.handleChange} required/>
     </div>
  	</form >
  	<br/>
@@ -39,7 +81,7 @@ function Menu() {
     <form>
     <div className = "input-group">
     <span className = "input-group-text"> Phân loại </span>
-	<input type = "text" className = "form-control" placeholder />
+	<input type="number" min={1} max={2} id ="category_id" name="category_id" className = "form-control" value={this.state.category_id} onChange={this.handleChange} required/>
     </div> 
 	</form> 
 	<br/>
@@ -48,7 +90,7 @@ function Menu() {
     <form>
     <div className = "input-group">
     <span className = "input-group-text"> Số lượng </span>
-	<input type = "number" className = "form-control" placeholder/>
+	<input name ="qty_day" id = "qty_day" min={1} type = "number" className = "form-control" value={this.state.qty_day} onChange={this.handleChange} required/>
     </div>
 	</form >
 	</div>
@@ -56,7 +98,7 @@ function Menu() {
     <form>
     <div className = "input-group">
     <span className = "input-group-text"> Mô tả </span>
- 	<input type="text" className="form-control" placeholder=""/>
+ 	  <input name="info" id="info" type="text" className="form-control" value={this.state.info} onChange={this.handleChange} required/>
     </div>
  	<br/>
     </form> 
@@ -66,7 +108,7 @@ function Menu() {
     <form>
     <div className = "input-group">
     <span className = "input-group-text"> Giá vốn </span>
-	<input type = "text" className = "form-control" placeholder ="" />
+	<input type = "number" id="price" min={0} className = "form-control" name = "price" value={this.state.price} onChange={this.handleChange} required/>
     </div>
 	</form >
     <br/>
@@ -75,7 +117,7 @@ function Menu() {
     <form >
     <div className = "input-group">
     <span className = "input-group-text"> Giá bán </span>
-	<input type = "text" className = "form-control" placeholder ="" />
+	<input id="cost" type = "number" min={0} className = "form-control" value={this.state.cost} name = "cost" onChange={this.handleChange} required />
     </div>
 	</form >
 	</div>
@@ -90,75 +132,32 @@ function Menu() {
 	</div> 
 	<br/>
     </div>
-	<div className = "col-sm-3" >
-    <img src = "https://tse1.mm.bing.net/th?id=OIP.P9Gss-Czh12A7WKadzx1gwHaE8&pid=Api&rs=1&c=1&qlt=95&w=156&h=104" alt = "icon" className = "img-fluid" />
-    <div className = "container-fluid" >
+	  <div className = "col-sm-3" > 
+     <div className = "menu_image"></div>
+     <p>
+            <input type="file"
+                   id="image" onChange={this.handleImageChange} required/>
+                    </p>
+                    <img src={this.state.image ? URL.createObjectURL(this.state.image) : ''} style={{ display: this.state.image ? 'block' : 'none' }} alt={this.state.image} width='250px' height='250px'/>
+  </div>
+	</div>
+	</div>
+  </div>
+  </div>
+      <div className = "container-fluid">
     <div className = "row" >
-    <div className = "col-sm-6" >
-    <ul className = "nav justify-content-center">
-    <li className = "nav-item">
-    <a className = "nav-link" href = "#" >
-    <button type = "button" className = "btn btn-primary"> Sửa </button> 
-	</a> 
-	</li>
-	</ul>
-    </div> 
-	<div className = "col-sm-6">
-    <ul className = "nav justify-content-center">
-    <li className = "nav-item">
-    <a className = "nav-link" href = "#">
-    <button type = "button" className = "btn btn-primary"> Xóa </button> </a> 
-	</li>
-	</ul>
-	</div>
+     <div className = "col-sm-8"> 
+       <div className = "type_button">
+                <button className = "btn btn-primary" type="submit">Thêm vào</button>        
+          </div>    
+      </div>
+      <div className = "col-sm-4"> <AddMenu /></div>
     </div>
-	</div>
     </div>
-	</div>
-	</div>
-    <div className = "container">
-         <div className = "row" >
-        <div className = "col-sm-8" >
-        <div className="adddishes">
-           <Button variant="primary" onClick={handleShow}>
-        Thêm vào
-      </Button>
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Body>Thêm món ăn thành công</Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleClose} href="/manage/menu">
-            Tiếp tục
-          </Button>
-          <Button variant="secondary" onClick={handleClose} href="/foods">
-            Kết thúc
-          </Button>
-        </Modal.Footer>
-      </Modal> 
-        </div> 
-        </div>
-        <div className = "col-sm-4" >
-          <div className="cancel">
-         <Button variant="primary" onClick={handerOpen}>
-        Hủy bỏ
-      </Button>
-         <Modal show={shown} onHide={handleOpen}>
-        <Modal.Body>Thêm món ăn không thành công</Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleOpen} href="/manage/dashboard">
-            Trở lại trang admin
-          </Button>
-        </Modal.Footer>
-      </Modal> 
-        </div>
-        </div>
-        </div>
-	</div> 
-	</div>
-    </>
-  );
+        </form>
+      </div>
+    );
+  }
 }
 
-
-
-export default Menu
+export default Menu;
