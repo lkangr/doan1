@@ -8,20 +8,18 @@
     text-align: center;
 } */
 
-.img-fluid {
+.menu_image {
     text-align: center;
-    margin: 0px 0 10px 0;
-    padding: 0px;
-    width: 245px;
-    height: 160px;
+    border-width: 5px;
+    border-color: rgb(0, 162, 255);
+    width: 200px;
+    height: 2000px;
+    float: left;
+    border-style: ridge;
 }
 
 .container-fluid {
     margin-top: 12px;
-}
-
-.space {
-    margin: 0 0 20px 0;
 }
 
 .adddishes {
@@ -30,4 +28,14 @@
 
 .cancel {
     text-align: left;
+}
+
+.omega {
+    text-align: left;
+    width: 191px;
+    height: 161px;
+}
+
+.type_button {
+    padding-left: 12cm;
 }
