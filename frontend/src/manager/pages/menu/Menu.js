@@ -3,7 +3,6 @@ import axios from 'axios';
 import "./Menu.css";
 import AddMenu from "./AddMenu.js";
 class Menu extends Component {
-  
 
   state = {
     name: "",
@@ -108,7 +107,7 @@ class Menu extends Component {
     <form>
     <div className = "input-group">
     <span className = "input-group-text"> Giá vốn </span>
-	<input type = "number" id="price" min={0} className = "form-control" name = "price" value={this.state.price} onChange={this.handleChange} required/>
+	<input type = "number" id="cost" min={1000} step={1000} className = "form-control" name = "cost" value={this.state.cost} onChange={this.handleChange} required/>
     </div>
 	</form >
     <br/>
@@ -117,7 +116,7 @@ class Menu extends Component {
     <form >
     <div className = "input-group">
     <span className = "input-group-text"> Giá bán </span>
-	<input id="cost" type = "number" min={0} className = "form-control" value={this.state.cost} name = "cost" onChange={this.handleChange} required />
+	<input id="price" type = "number" min={0} step={1000} className = "form-control" value={this.state.price} name = "price" onChange={this.handleChange} required />
     </div>
 	</form >
 	</div>
@@ -133,12 +132,10 @@ class Menu extends Component {
 	<br/>
     </div>
 	  <div className = "col-sm-3" > 
-     <div className = "menu_image"></div>
-     <p>
-            <input type="file"
-                   id="image" onChange={this.handleImageChange} required/>
-                    </p>
-                    <img src={this.state.image ? URL.createObjectURL(this.state.image) : ''} style={{ display: this.state.image ? 'block' : 'none' }} alt={this.state.image} width='250px' height='250px'/>
+     <div className = "menu_image">
+            <input type="file" id="image" onChange={this.handleImageChange} required/>
+          <img src={this.state.image ? URL.createObjectURL(this.state.image) : ''} style={{ display: this.state.image ? 'block' : 'none' }} alt={this.state.image} width='191px' height='161px'/>
+        </div>  
   </div>
 	</div>
 	</div>
