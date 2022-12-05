@@ -9,19 +9,21 @@
 } */
 
 .menu_image {
-    text-align: center;
+   
     border-width: 5px;
     border-color: rgb(0, 162, 255);
-    width: 200px;
-    height: 2000px;
-    float: left;
+    width: 100%;
+    height: 85%;
     border-style: ridge;
+    vertical-align: middle;
+    justify-items: center;
+    align-items: center;
 }
 
 .container-fluid {
     margin-top: 12px;
+    text-align: center;
 }
-
 .adddishes {
     text-align: right;
 }

@@ -1,12 +1,11 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import "./css/Cart.css";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const ProductList = [];
+let ProductList = [];
 
 const Cart = () => {
     const productData = ProductList;
-
     const [products, SetProducts] = useState(productData);
 
     // -----Increment Event------
@@ -40,7 +39,7 @@ const Cart = () => {
         );
     };
 
-    
+
 
     // -----Remove Event------
     const removeFromCart = (i) => {
@@ -50,7 +49,7 @@ const Cart = () => {
                     return i !== o;
                 })
             );
-           
+
         } else {
             // alert('No');
         }
@@ -69,11 +68,11 @@ const Cart = () => {
     // ------Total Product Incart and Total Price of cart
     const cartTotalQty = products.reduce((acc, data) => acc + data.qty, 0);
     const cartTotalAmount = products.reduce((acc, data) => acc + data.price * data.qty, 0);
+    ProductList = productData ? [...productData] : [];
 
-    return(
-        
-       <div className="row justify-content-center m-0">
-            <div className="col-md-8 mt-5 mb-5">
+    return (
+        <div className="row justify-content-center m-0">
+            <div className="col-md-10 mt-5 mb-5">
                 <div className="card">
                     <div className="card-header bg-light p-3">
                         <div className="card-header-flex">
@@ -99,12 +98,12 @@ const Cart = () => {
                                 <table className="table cart-table mb-0">
                                     <thead>
                                         <tr>
-                                            <th>Hủy</th>
-                                            <th>Món ăn</th>
-                                            <th>Tên món ăn</th>
+                                            <th style={{ verticalAlign: 'middle', textAlign: 'left' }} >Tên món ăn</th>
+                                            <th></th>
                                             <th>Giá cả</th>
                                             <th>Số lượng</th>
-                                            <th className="text-right"><span id="amount" className="amount">Total</span></th>
+                                            <th> Total</th>
+                                            <th>Hủy</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -112,11 +111,10 @@ const Cart = () => {
                                             products.map((data, index) => {
                                                 const { id, image, name, price, qty } = data;
                                                 return (
-                                                    <tr key={index}>
-                                                        <td><button className="prdct-delete" onClick={() => removeFromCart(index)}><i className="fa fa-trash-alt"></i></button></td>
+                                                    <tr key={index} >
+                                                        <td style={{ verticalAlign: 'middle', textAlign: 'left' }}>{name}</td>
                                                         <td><div className="product-img"><img src={image} alt="" /></div></td>
-                                                        <td><div className="product-name"><p>{name}</p></div></td>
-                                                        <td>{String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'}</td>
+                                                        <td style={{ verticalAlign: 'middle' }}>{String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'}</td>
                                                         <td>
                                                             <div className="prdct-qty-container">
                                                                 <button className="prdct-qty-btn" type="button" onClick={() => decreaseQuantity(index)}>
@@ -128,7 +126,8 @@ const Cart = () => {
                                                                 </button>
                                                             </div>
                                                         </td>
-                                                        <td className="text-right">{String(qty * price).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'}</td>
+                                                        <td className="text-center" style={{ verticalAlign: 'middle' }}>{String(qty * price).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'}</td>
+                                                        <td><button className="prdct-delete" onClick={() => removeFromCart(index)}><i className="fa fa-times"></i></button></td>
                                                     </tr>
                                                 )
                                             })
@@ -136,19 +135,22 @@ const Cart = () => {
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th colSpan="2">
-                                                <Link to = {{pathname: "/payment", 
+                                            <th colSpan="2" style={{ verticalAlign: 'middle' }} >
+                                                <Link to={{
+                                                    pathname: "/payment",
                                                     state: {
                                                         total: cartTotalAmount,
-                                                        fList: products}}}>
-                                                    <button className="btn btn-success mt-0 btn-sm" style={{height:"50px"}}>
-                                                        <h6>THANH TOÁN</h6>
+                                                        fList: products
+                                                    }
+                                                }}>
+                                                    <button className="btn btn-success mt-0 btn-sm" style={{ height: "50px", alignItems: 'center' }} >
+                                                        THANH TOÁN
                                                     </button>
                                                 </Link>
                                             </th>
                                             <th>&nbsp;</th>
-                                            <th>Số lượng<span className="ml-2 mr-2">:</span><span className="text-danger">{cartTotalQty}</span></th>
-                                            <th className="text-right">Tổng giá<span className="ml-2 mr-2">:</span><span className="text-danger">{String(cartTotalAmount).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'}</span></th>
+                                            <th style={{ verticalAlign: 'middle' }}>Số lượng<span className="ml-2 mr-2">:</span><span className="text-danger">{cartTotalQty}</span></th>
+                                            <th style={{ verticalAlign: 'middle' }} className="text-right">Tổng giá<span className="ml-2 mr-2">:</span><span className="text-danger">{String(cartTotalAmount).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'}</span></th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -157,8 +159,8 @@ const Cart = () => {
                 </div>
             </div>
         </div>
-       
+
     );
 }
 export default Cart;
-export {ProductList};
+export { ProductList };

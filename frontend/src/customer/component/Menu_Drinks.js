@@ -3,13 +3,13 @@ import "../css/box.css"
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
-const Menu = ({name, desc, price, addItem}) => {
+const Menu = ({ name, desc, price, addItem }) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
         axios
-        .get("/api/food?type=2")
-        .then((res) => setData(res.data));
+            .get("/api/food?type=2")
+            .then((res) => setData(res.data));
     }, [])
 
     return (
@@ -22,12 +22,12 @@ const Menu = ({name, desc, price, addItem}) => {
                 <div className="row justify-content-center features">
                     {
                         data.map((data, index) => (
-                            <Item 
+                            <Item
                                 item_id={data.id}
-                                name= {data.name}
-                                desc= {data.info}
-                                img = {"http://127.0.0.1:8000"+data.image}
-                                price= {data.price}
+                                name={data.name}
+                                desc={data.info}
+                                img={"http://127.0.0.1:8000" + data.image}
+                                price={data.price}
                             />
                         ))
                     }
