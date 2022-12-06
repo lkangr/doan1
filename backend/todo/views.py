@@ -119,7 +119,15 @@ def TableApi(request, id=0):
 def StaffApi(request, id=0):
     if request.method == 'GET':
         if id == 0:
-            staffs = Staff.objects.all()
+            staff_arr = request.GET['type']
+            staff_arr = str(staff_arr).split(',')
+            if staff_arr == ['']:
+                staffs = Staff.objects.all()
+            else:
+                query = "SELECT * FROM `todo_staff` WHERE false"
+                for i in range(len(staff_arr)):
+                    query = query + " OR staff_type=" + str(staff_arr[i])
+                staffs = Staff.objects.raw(query)
             staffs_serializers = StaffSerializer(staffs, many=True)
             return JsonResponse(staffs_serializers.data, safe=False)
         else:
@@ -188,7 +196,6 @@ def OrderApi(request, id=0):
             return JsonResponse(order_serializer.data, safe=False)
         else:
             order = Order.objects.get(id=id)
-
             order_serializer = OrderSerializer(order, many=False)
             return JsonResponse(order_serializer.data, safe=False)
     elif request.method == 'POST':
