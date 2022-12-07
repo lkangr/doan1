@@ -15,7 +15,7 @@ Chạy khi mới pull về để tải node module.
 #### `npm start`
 Chạy server local.
 ### Nhập cơ sở dữ liệu
-Tạo cơ sở dữ liệu tên doan và import file doan.sql
+Tạo cơ sở dữ liệu tên doan và import file newdb.sql hoặc hoang.sql
 
 ## Git Commands
 
