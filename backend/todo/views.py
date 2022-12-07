@@ -5,6 +5,7 @@ from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from datetime import datetime, timedelta
 from django.db.models import Count, Sum
+from django.http import HttpRequest
 import json
 
 from .models import Category, Foods, Table, Staff, Reservation, Order, Food_Order
@@ -44,10 +45,14 @@ def CategoryApi(request, id=0):
         return JsonResponse("Delete Successfully", safe=False)
 
 @csrf_exempt
-def FoodApi(request, id=0):
+def FoodApi(request:HttpRequest, id=0):
     if request.method == 'GET':
         if id == 0:
-            foods = Foods.objects.filter(category_id=request.GET['type'])
+            query="select * from todo_foods where 0=1"
+            typeArr=request.GET.getlist("type")
+            for i in range(len(typeArr)):
+                query+=f" or category_id_id={typeArr[i]}"
+            foods=Foods.objects.raw(query)
             foods_serializers = FoodsSerializer(foods, many=True)
             return JsonResponse(foods_serializers.data, safe=False)
         else:
