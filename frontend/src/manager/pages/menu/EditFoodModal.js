@@ -3,16 +3,16 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 
 const EditFoodModal = ({ item, show, handleClose }) => {
-  const id = item?.id;
-  const [name, setName] = useState(''),
-    [price, setPrice] = useState(''),
-    [category_id, setCategory_id] = useState(''),
-    [cost, setCost] = useState(''),
-    [image, setImage] = useState(''),
-    [info, setInfo] = useState(''),
-    [qty_day, setQty_day] = useState('');
+  const [id, setId] = useState(item.id),
+    [name, setName] = useState(item.name),
+    [price, setPrice] = useState(item.price),
+    [category_id, setCategory_id] = useState(item.category_id),
+    [cost, setCost] = useState(item.cost),
+    [image, setImage] = useState(item.image),
+    [info, setInfo] = useState(item.info),
+    [qty_day, setQty_day] = useState(item.qty_day);
 
-  const save = () => {
+  const save = async (e) => {
     if (!name || !qty_day || !image || !category_id || !cost || !price) {
       alert('Chưa điền đầy đủ thông tin');
     }
@@ -22,21 +22,27 @@ const EditFoodModal = ({ item, show, handleClose }) => {
       form_data.append('name', name);
       form_data.append('info', info);
       form_data.append('qty_day', qty_day);
-      // form_data.append('image', image);
+      form_data.append('image', image);
       form_data.append('category_id', category_id);
       form_data.append('price', price);
       form_data.append('cost', cost);
-      let url = 'http://127.0.0.1:8000/api/food';
-      axios.put(url, form_data, {
+      const json = {};
+      Array.from(form_data.entries()).forEach(([key, value]) => {
+        json[key] = value;
+      })
+      axios.put(`/api/food`, JSON.stringify(json), {
         headers: {
           'content-type': 'multipart/form-data'
         }
-      }).catch(err => console.error(err))
+      })
+      .catch(err => console.error(err));
+      handleClose();
     }
   }
 
   useEffect(() => {
     if (item) {
+      setId(item.id);
       setName(item.name);
       setPrice(item.price);
       setCategory_id(item.category_id);

@@ -8,6 +8,7 @@ import EditFoodModal from './EditFoodModal';
 class Menu extends Component {
 
   state = {
+    id: 0,
     name: "",
     info: "",
     qty_day: 0,
@@ -43,6 +44,7 @@ class Menu extends Component {
   };
   handleClose = () => {
     this.setState({ show: false, editItem: {} });
+    setTimeout(() => this.getData(), 500)
   }
 
   handleImageChange = (e) => {
@@ -52,9 +54,8 @@ class Menu extends Component {
   };
 
   handleDelete = (id, name) => {
-    const url = "http://localhost:8000/api/food";
     if (window.confirm(`Bạn có muốn xóa món ${name} khỏi thực đơn không?`)) {
-      axios.delete(url + '/' + id)
+      axios.delete(`/api/food/` + id)
         .then(() => { this.getData(); }
         ).catch(error => console.error(error));
     }
@@ -76,8 +77,7 @@ class Menu extends Component {
       form_data.append('category_id', this.state.category_id);
       form_data.append('price', this.state.price);
       form_data.append('cost', this.state.cost);
-      let url = 'http://127.0.0.1:8000/api/food';
-      axios.put(url, form_data, {
+      axios.post(`/api/food`, form_data, {
         headers: {
           'content-type': 'multipart/form-data'
         }
@@ -102,7 +102,6 @@ class Menu extends Component {
     const data = [...this.state.dish, ...this.state.drink];
     return (
       <div className="App">
-
         <h1 className="fw-bold p-3" > Thêm món </h1>
         <form onSubmit={this.handleSubmit}>
 
@@ -117,13 +116,6 @@ class Menu extends Component {
                       <input id="name" name="name" className="form-control" type="text" value={this.state.name} onChange={this.handleChange} required />
                     </div>
                   </form>
-                  <br />
-                  <form>
-                    <div className="input-group">
-                      <span className="input-group-text"> Mã món </span>
-                      <input type="number" min={1} className="form-control" name="id" value={this.state.id} onChange={this.handleChange} required />
-                    </div>
-                  </form >
                   <br />
                   <div className="row">
                     <div className="col-sm-6">
@@ -186,7 +178,7 @@ class Menu extends Component {
                     {this.state.image && <button type='button' style={{ position: 'absolute', marginLeft: '35%', border: 'none' }} onClick={() => this.setState({ image: null })}> <i className='fa fa-times'></i> </button>}
                     {!this.state.image && <input type="file" id="image" onChange={this.handleImageChange} required />}
                     <img src={this.state.image ? URL.createObjectURL(this.state.image) : ''} style={{ display: this.state.image ? 'block' : 'none', marginTop: '10%', marginLeft: '10%', width: '70%', height: '80%' }} alt={this.state.image} width='80%' height='80%' />
-
+            
                   </div>
                 </div>
               </div>
@@ -240,7 +232,7 @@ class Menu extends Component {
             </Table>
           </div>}
         </form>
-        <EditFoodModal show={this.state.show} handleClose={this.handleClose} item={this.state.editItem} />
+        <EditFoodModal show={this.state.show} handleClose={this.handleClose} item={this.state.editItem}/>
       </div>
     );
   }
