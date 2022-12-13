@@ -3,6 +3,8 @@ import axios from 'axios';
 import "./Menu.css";
 import AddMenu from "./AddMenu.js";
 import { Table } from "react-bootstrap"
+import EditFoodModal from './EditFoodModal';
+
 class Menu extends Component {
 
   state = {
@@ -14,19 +16,23 @@ class Menu extends Component {
     price: 0,
     cost: 0,
     dish: [],
-    drink: []
+    drink: [],
+    show: false,
+    editItem: {}
   };
+
+
   componentDidMount() {
     this.getData();
   }
   getData() {
     axios
-      .get("/api/food?type=1")
-      .then((res) => this.setState({ dish: res.data }, () => console.log(res)))
+      .get("/api/food?type=1&type=2")
+      .then((res) => this.setState({ dish: res.data }))
       .catch(error => console.error(error));
     axios
-      .get("/api/food?type=1")
-      .then((res) => this.setState({ drink: res.data }, () => console.log(res)))
+      .get("/api/food?type=3&type=4&type=5&type=6")
+      .then((res) => this.setState({ drink: res.data }))
       .catch(error => console.error(error));
   }
 
@@ -35,12 +41,25 @@ class Menu extends Component {
       [e.target.id]: e.target.value
     })
   };
+  handleClose = () => {
+    this.setState({ show: false, editItem: {} });
+  }
 
   handleImageChange = (e) => {
     this.setState({
       image: e.target.files[0]
     })
   };
+
+  handleDelete = (id, name) => {
+    const url = "http://localhost:8000/api/food";
+    if (window.confirm(`Bạn có muốn xóa món ${name} khỏi thực đơn không?`)) {
+      axios.delete(url + '/' + id)
+        .then(() => { this.getData(); }
+        ).catch(error => console.error(error));
+    }
+    else { };
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -49,6 +68,7 @@ class Menu extends Component {
     }
     else {
       let form_data = new FormData();
+      form_data.append('id', this.state.id);
       form_data.append('name', this.state.name);
       form_data.append('info', this.state.info);
       form_data.append('qty_day', this.state.qty_day);
@@ -57,7 +77,7 @@ class Menu extends Component {
       form_data.append('price', this.state.price);
       form_data.append('cost', this.state.cost);
       let url = 'http://127.0.0.1:8000/api/food';
-      axios.post(url, form_data, {
+      axios.put(url, form_data, {
         headers: {
           'content-type': 'multipart/form-data'
         }
@@ -79,6 +99,7 @@ class Menu extends Component {
   };
 
   render() {
+    const data = [...this.state.dish, ...this.state.drink];
     return (
       <div className="App">
 
@@ -89,7 +110,7 @@ class Menu extends Component {
 
             <div className="container-fluid">
               <div className="row">
-                <div className="col-sm-6" >
+                <div className="col-sm-8" >
                   <form>
                     <div className="input-group">
                       <span className="input-group-text"> Tên món </span>
@@ -117,7 +138,7 @@ class Menu extends Component {
                     <div className="col-sm-6">
                       <form>
                         <div className="input-group">
-                          <span className="input-group-text"> Số lượng </span>
+                          <span className="input-group-text" > Số lượng </span>
                           <input name="qty_day" id="qty_day" min={1} type="number" className="form-control" value={this.state.qty_day} onChange={this.handleChange} required />
                         </div>
                       </form >
@@ -160,11 +181,11 @@ class Menu extends Component {
                   </div>
                   <br />
                 </div>
-                <div className="col-sm-6" >
+                <div className="col-sm-4" >
                   <div className="menu_image" style={{ textAlign: 'center' }}>
-                    {this.state.image && <i className='fa fa-minus' style={{ position: 'absolute', marginLeft: '30%', marginTop: '5%' }}></i>}
+                    {this.state.image && <button type='button' style={{ position: 'absolute', marginLeft: '35%', border: 'none' }} onClick={() => this.setState({ image: null })}> <i className='fa fa-times'></i> </button>}
                     {!this.state.image && <input type="file" id="image" onChange={this.handleImageChange} required />}
-                    <img src={this.state.image ? URL.createObjectURL(this.state.image) : ''} style={{ display: this.state.image ? 'block' : 'none', marginTop: '10%', marginLeft: '5%', width: '80%', height: '80%' }} alt={this.state.image} width='80%' height='80%' />
+                    <img src={this.state.image ? URL.createObjectURL(this.state.image) : ''} style={{ display: this.state.image ? 'block' : 'none', marginTop: '10%', marginLeft: '10%', width: '70%', height: '80%' }} alt={this.state.image} width='80%' height='80%' />
 
                   </div>
                 </div>
@@ -182,8 +203,7 @@ class Menu extends Component {
               <div className="col-sm-4"> <AddMenu /></div>
             </div>
           </div>
-          {this.state.dish && this.state.drink && <div className="container-fluid">
-            <h6>Thực đơn đã có</h6>
+          {data && <div className="container-fluid" style={{ marginTop: '20px' }}>
             <Table striped bordered hover>
               <thead>
                 <th style={{ with: 'auto', whiteSpace: 'nowrap' }}>ID</th>
@@ -193,25 +213,34 @@ class Menu extends Component {
                 <th style={{ with: 'auto', whiteSpace: 'nowrap' }}>Thông tin</th>
                 <th style={{ with: 'auto', whiteSpace: 'nowrap' }}>Hình ảnh</th>
                 <th style={{ with: 'auto', whiteSpace: 'nowrap' }}>Số lượng</th>
-
+                <th style={{ with: 'auto', whiteSpace: 'nowrap' }}>Thao tác</th>
               </thead>
 
               <tbody>
-                {this.state.dish && this.state.dish.map((item, index) => {
+                {data && data.map((item, index) => {
                   return <tr key={index}>
                     <td style={{ width: 'auto', verticalAlign: "middle" }}> {item.id} </td>
                     <td style={{ width: '30%', textAlign: 'left', verticalAlign: "middle" }}> {item.name}</td>
                     <td style={{ width: 'auto', verticalAlign: "middle" }}>{item.cost} </td>
                     <td style={{ width: 'auto', verticalAlign: "middle" }}>{item.price} </td>
-                    <td style={{ width: '30%', textAlign: 'left', verticalAlign: "middle" }}>{item.info} </td>
-                    <td style={{ width: '30%', verticalAlign: "middle" }}><div className="product-img"><img src={item.image} alt="" /></div></td>
+                    <td style={{ width: '40%', textAlign: 'left', verticalAlign: "middle" }}>{item.info} </td>
+                    <td style={{ width: '20%', verticalAlign: "middle" }}><div className="product-img"><img src={item.image} alt="" /></div></td>
                     <td style={{ width: 'auto', verticalAlign: "middle" }}> {item.qty_day}</td>
+                    <td style={{ width: 'auto', verticalAlign: "middle", whiteSpace: 'nowrap' }}>
+                      <button className='btn btn-info' style={{ marginRight: '5px' }} onClick={e => e.preventDefault() || this.setState({ show: true, editItem: item })}>
+                        <i className='fa fa-cog'></i>
+                      </button>
+                      <button className='btn btn-danger' onClick={e => e.preventDefault() || this.handleDelete(item.id, item.name)}>
+                        <i className='fa fa-times'></i>
+                      </button>
+                    </td>
                   </tr>
                 })}
               </tbody>
             </Table>
           </div>}
         </form>
+        <EditFoodModal show={this.state.show} handleClose={this.handleClose} item={this.state.editItem} />
       </div>
     );
   }
