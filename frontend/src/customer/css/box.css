@@ -50,8 +50,8 @@
     padding: 30px;
     background-color: var(--bs-light);
     margin-bottom: 30px;
-    border-radius: 5px;
-    border: 2px solid var(--bs-gray-dark)
+    border-radius: 15px;
+    border: 2px solid var(--bs-yellow)
 }
 
 .features-boxed .item .pizza-img {
@@ -66,6 +66,7 @@
     margin-bottom: 8px;
     margin-top: 0;
     color: var(--bs-gray-dark);
+    white-space: nowrap;
 }
 
 .features-boxed .item .description {

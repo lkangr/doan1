@@ -88,10 +88,15 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',   
-        'PORT': '3306',
+        'PORT': '3307',
     }
 }
-
+        # 'ENGINE': 'django.db.backends.oracle',
+        # 'NAME': 'localhost:1521/DBMS',
+        # 'USER': 'Hoang',
+        # 'PASSWORD': 'Hoang2002',
+        # 'HOST': '',   
+        # 'PORT': '',
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

@@ -5,6 +5,7 @@ from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from datetime import datetime, timedelta
 from django.db.models import Count, Sum
+from django.http import HttpRequest
 import json
 
 from .models import Category, Foods, Table, Staff, Reservation, Order, Food_Order
@@ -44,10 +45,14 @@ def CategoryApi(request, id=0):
         return JsonResponse("Delete Successfully", safe=False)
 
 @csrf_exempt
-def FoodApi(request, id=0):
+def FoodApi(request:HttpRequest, id=0):
     if request.method == 'GET':
         if id == 0:
-            foods = Foods.objects.filter(category_id=request.GET['type'])
+            query="select * from todo_foods where 0=1"
+            typeArr=request.GET.getlist("type")
+            for i in range(len(typeArr)):
+                query+=f" or category_id_id={typeArr[i]}"
+            foods=Foods.objects.raw(query)
             foods_serializers = FoodsSerializer(foods, many=True)
             return JsonResponse(foods_serializers.data, safe=False)
         else:
@@ -73,10 +78,9 @@ def FoodApi(request, id=0):
         # return JsonResponse("Failed to Add", safe=False)
     elif request.method == 'PUT':
         food_data = JSONParser().parse(request)
-        food = Foods.objects.get(id = food_data['id'])
-        foods_serializers = FoodsSerializer(food, data=food_data)
-        if foods_serializers.is_valid():
-            foods_serializers.save()
+        food = Foods.objects.get(id = int(food_data['id']))
+        foods_serializers = FoodsSerializer(food, data=food_data).update(food, food_data)
+        if foods_serializers:
             return JsonResponse("Update Successfully", safe=False)
         return JsonResponse("Failed to Update")
     elif request.method == 'DELETE':
@@ -119,7 +123,15 @@ def TableApi(request, id=0):
 def StaffApi(request, id=0):
     if request.method == 'GET':
         if id == 0:
-            staffs = Staff.objects.all()
+            staff_arr = request.GET['type']
+            staff_arr = str(staff_arr).split(',')
+            if staff_arr == ['']:
+                staffs = Staff.objects.all()
+            else:
+                query = "SELECT * FROM `todo_staff` WHERE false"
+                for i in range(len(staff_arr)):
+                    query = query + " OR staff_type=" + str(staff_arr[i])
+                staffs = Staff.objects.raw(query)
             staffs_serializers = StaffSerializer(staffs, many=True)
             return JsonResponse(staffs_serializers.data, safe=False)
         else:
@@ -188,7 +200,6 @@ def OrderApi(request, id=0):
             return JsonResponse(order_serializer.data, safe=False)
         else:
             order = Order.objects.get(id=id)
-
             order_serializer = OrderSerializer(order, many=False)
             return JsonResponse(order_serializer.data, safe=False)
     elif request.method == 'POST':

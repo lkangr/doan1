@@ -1,5 +1,5 @@
 # Đồ án Công nghệ phần mềm
-File Báo cáo: https://docs.google.com/document/d/1Amv2PEYxoZ-DdcRDhNZsL5TwvZiqx-znx5jF3Tx-TVQ/edit
+File Báo cáo: https://www.overleaf.com/7387987361nddcfvndpvwk
 ## Scripts
 
 ### Chạy backend
@@ -15,7 +15,7 @@ Chạy khi mới pull về để tải node module.
 #### `npm start`
 Chạy server local.
 ### Nhập cơ sở dữ liệu
-Tạo cơ sở dữ liệu tên doan và import file doan.sql
+Tạo cơ sở dữ liệu tên doan và import file newdb.sql hoặc hoang.sql
 
 ## Git Commands
 

@@ -1,15 +1,15 @@
 import { ProductList } from "../Cart";
 
-const Item = ({item_id ,name, desc, img, price}) => {
+const Item = ({ item_id, name, desc, img, price }) => {
     return (
         <div className="col-sm-6 col-md-5 col-lg-4 item">
             <div className="box">
-                <img className="rounded img-fluid pizza-img" src={img}/>
+                <img className="rounded img-fluid pizza-img" src={img} alt="" />
                 <h3 className="name">{name}</h3>
-                <p className="description">{desc}</p>
+                {/* <p className="description">{desc}</p> */}
                 <div className="d-flex justify-content-around align-items-center">
-                    <button className="btn btn-success" type="button" onClick={() => { addItem(item_id ,name, price, img); alert("Đã thêm " + name + " vô giỏ hàng của bạn!") }}>
-                        Thêm vào giỏ
+                    <button className="btn btn-success" type="button" onClick={() => { addItem(item_id, name, price, img); alert("Đã thêm " + name + " vô giỏ hàng của bạn!") }}>
+                        Chọn
                     </button>
                     <span className="badge rounded-pill bg-danger price">{String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' VND'}</span>
                 </div>
@@ -21,7 +21,7 @@ const Item = ({item_id ,name, desc, img, price}) => {
 
 var id = 1;
 
-function addItem(item_id ,name, price, img) {
+function addItem(item_id, name, price, img) {
     var temp = {
         "id": id,
         "item_id": item_id,
@@ -30,15 +30,15 @@ function addItem(item_id ,name, price, img) {
         "price": price,
         "qty": 1
     }
-    var exist =  false;
+    var exist = false;
 
-    ProductList.forEach(function(item) {
+    ProductList.forEach(function (item) {
         if (item["name"] === name) {
             item["qty"] += 1;
             exist = true;
         }
     });
-    
+
     if (!exist) {
         ProductList.push(temp);
         id = id + 1;
